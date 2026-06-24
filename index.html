@@ -26,12 +26,45 @@
     html { scroll-behavior: smooth; }
 
     body {
-      background: var(--off-black);
       color: var(--white);
       font-family: 'Inter', sans-serif;
       font-weight: 300;
       font-size: 15px;
       line-height: 1.7;
+      overflow-x: hidden;
+    }
+
+    /* ── ANIMATED GRADIENT ── */
+    .gradient-bg {
+      position: fixed;
+      inset: 0;
+      z-index: -1;
+      background: linear-gradient(
+        135deg,
+        #0d0814,
+        #1a1035,
+        #1a0f2e,
+        #0f1a2e,
+        #1a0f1f,
+        #0d1a1a,
+        #1a1035
+      );
+      background-size: 400% 400%;
+      animation: gradientShift 18s ease infinite;
+    }
+
+    @keyframes gradientShift {
+      0%   { background-position: 0% 50%; }
+      25%  { background-position: 100% 0%; }
+      50%  { background-position: 100% 100%; }
+      75%  { background-position: 0% 100%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    /* ── PARALLAX PORTRAIT ── */
+    .hero-portrait {
+      will-change: transform;
+      transition: transform 0.1s linear;
     }
 
     /* ── HERO ── */
@@ -221,6 +254,8 @@
 </head>
 <body>
 
+  <div class="gradient-bg"></div>
+
   <!-- HERO -->
   <div class="hero">
     <img class="hero-portrait" src="Mike_Kitai_Banner_3.jpg" alt="Mike Kitai" />
@@ -295,6 +330,17 @@
   <footer>
     &copy; 2026 Northwell Media
   </footer>
+
+  <script>
+    const portrait = document.querySelector('.hero-portrait');
+    const heroText = document.querySelector('.hero-text');
+
+    window.addEventListener('scroll', () => {
+      const scrollY = window.scrollY;
+      if (portrait) portrait.style.transform = `translateY(${scrollY * 0.25}px)`;
+      if (heroText) heroText.style.transform = `translateY(${scrollY * 0.12}px)`;
+    });
+  </script>
 
 </body>
 </html>
