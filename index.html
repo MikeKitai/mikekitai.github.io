@@ -4,6 +4,12 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Mike Kitai</title>
+  <meta name="description" content="Mike Kitai — Tokyo-based singer-songwriter. Listen on Spotify, Apple Music, SoundCloud and more." />
+  <meta property="og:title" content="Mike Kitai" />
+  <meta property="og:description" content="Tokyo-based singer-songwriter. Listen on Spotify, Apple Music, SoundCloud and more." />
+  <meta property="og:url" content="https://mikekitai.com" />
+  <meta property="og:type" content="website" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='16' fill='%231a1020'/><text x='50' y='68' font-family='Georgia,serif' font-size='42' font-weight='bold' fill='%23c8bfa8' text-anchor='middle'>MK</text></svg>" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300&family=Inter:wght@300;400&display=swap" rel="stylesheet" />
@@ -32,18 +38,24 @@
     .hero {
       max-width: 860px;
       margin: 0 auto;
-      padding: 56px 32px 20px;
+      padding: 56px 32px 28px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      align-items: center;
+      gap: 36px;
+    }
+
+    .hero-left {
       display: flex;
       flex-direction: column;
       align-items: center;
       text-align: center;
-      gap: 28px;
+      gap: 20px;
     }
 
     .hero-portrait {
-      flex-shrink: 0;
-      width: 150px;
-      height: 150px;
+      width: 140px;
+      height: 140px;
       border-radius: 50%;
       object-fit: cover;
       object-position: center 15%;
@@ -51,47 +63,41 @@
       border: 1px solid rgba(200,191,168,0.2);
     }
 
-    .hero-text { flex: 1; }
-
     .hero-eyebrow {
       font-size: 11px;
       font-weight: 400;
       letter-spacing: 0.18em;
       text-transform: uppercase;
       color: var(--accent);
-      margin-bottom: 12px;
+      margin-bottom: 8px;
     }
 
     .hero-name {
       font-family: 'Cormorant Garamond', serif;
       font-weight: 300;
-      font-size: clamp(48px, 7vw, 80px);
+      font-size: clamp(40px, 5vw, 72px);
       line-height: 0.95;
       letter-spacing: -0.01em;
-      margin-bottom: 18px;
+      margin-bottom: 10px;
     }
 
-    .hero-tagline {
-      font-size: 14px;
-      color: var(--mid);
-      letter-spacing: 0.02em;
-    }
-
-    /* ── QUOTE STRIP ── */
-    .quote-strip {
-      border-top: 1px solid rgba(200,191,168,0.15);
-      border-bottom: 1px solid rgba(200,191,168,0.15);
-      padding: 24px 32px;
-      text-align: center;
-    }
-
-    .quote-strip p {
+    .hero-quote {
       font-family: 'Cormorant Garamond', serif;
       font-style: italic;
-      font-size: clamp(18px, 3vw, 26px);
+      font-size: clamp(14px, 2vw, 18px);
       font-weight: 300;
       color: var(--accent);
       letter-spacing: 0.02em;
+    }
+
+    .hero-right {
+      display: flex;
+      align-items: center;
+    }
+
+    .hero-right iframe {
+      width: 100%;
+      border-radius: 4px;
     }
 
     /* ── SECTIONS ── */
@@ -150,6 +156,13 @@
       overflow: visible;
     }
 
+    /* ── SPOTIFY EMBED ── */
+    .spotify-embed {
+      width: 100%;
+      border-radius: 4px;
+      overflow: hidden;
+    }
+
     /* ── CONTACT ── */
     .contact-line {
       font-size: 13px;
@@ -180,7 +193,8 @@
       letter-spacing: 0.08em;
     }
 
-    @media (max-width: 560px) {
+    @media (max-width: 620px) {
+      .hero { grid-template-columns: 1fr; }
       .link-grid { grid-template-columns: 1fr 1fr; }
     }
   </style>
@@ -189,16 +203,17 @@
 
   <!-- HERO -->
   <div class="hero">
-    <img class="hero-portrait" src="Mike_Kitai_Banner_3.jpg" alt="Mike Kitai" />
-    <div class="hero-text">
-      <p class="hero-eyebrow">Tokyo · Singer-Songwriter</p>
-      <h1 class="hero-name">Mike<br>Kitai</h1>
+    <div class="hero-left">
+      <img class="hero-portrait" src="Mike_Kitai_Banner_3.jpg" alt="Mike Kitai" />
+      <div class="hero-text">
+        <p class="hero-eyebrow">Tokyo · Singer-Songwriter</p>
+        <h1 class="hero-name">Mike<br>Kitai</h1>
+        <p class="hero-quote">I make &ldquo;music&rdquo;</p>
+      </div>
     </div>
-  </div>
-
-  <!-- QUOTE STRIP -->
-  <div class="quote-strip">
-    <p>I make &ldquo;music&rdquo;</p>
+    <div class="hero-right">
+      <iframe src="https://open.spotify.com/embed/artist/4LYH22JGVj8yZzbvF5Qhyh?utm_source=generator&theme=0" width="100%" height="352" frameborder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+    </div>
   </div>
 
   <!-- STREAMING -->
@@ -271,7 +286,7 @@
 
   <!-- FOOTER -->
   <footer>
-    &copy; 2025 Mike Kitai &nbsp;&middot;&nbsp; Tokyo, Japan
+    &copy; 2026 Mike Kitai &nbsp;&middot;&nbsp; Tokyo, Japan
   </footer>
 
 </body>
