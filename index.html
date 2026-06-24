@@ -15,7 +15,6 @@
       --off-black: #111110;
       --mid: #6b6b67;
       --accent: #c8bfa8;
-      --overlay: rgba(10, 10, 9, 0.52);
     }
 
     html { scroll-behavior: smooth; }
@@ -31,83 +30,63 @@
 
     /* ── HERO ── */
     .hero {
-      position: relative;
-      height: 100svh;
-      min-height: 560px;
-      display: flex;
-      flex-direction: column;
-      justify-content: flex-end;
-      padding: 0 0 60px 0;
-      overflow: hidden;
-    }
-
-    .hero-img {
-      position: absolute;
-      inset: 0;
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      object-position: center 20%;
-      filter: grayscale(18%);
-    }
-
-    .hero-overlay {
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(
-        to bottom,
-        transparent 30%,
-        rgba(10,10,9,0.6) 70%,
-        var(--off-black) 100%
-      );
-    }
-
-    .hero-content {
-      position: relative;
-      z-index: 2;
       max-width: 860px;
       margin: 0 auto;
-      padding: 0 32px;
-      width: 100%;
+      padding: 80px 32px 64px;
+      display: flex;
+      align-items: center;
+      gap: 52px;
     }
 
+    .hero-portrait {
+      flex-shrink: 0;
+      width: 160px;
+      height: 160px;
+      border-radius: 50%;
+      object-fit: cover;
+      object-position: center 15%;
+      filter: grayscale(15%);
+      border: 1px solid rgba(200,191,168,0.2);
+    }
+
+    .hero-text { flex: 1; }
+
     .hero-eyebrow {
-      font-family: 'Inter', sans-serif;
       font-size: 11px;
       font-weight: 400;
       letter-spacing: 0.18em;
       text-transform: uppercase;
       color: var(--accent);
-      margin-bottom: 16px;
+      margin-bottom: 12px;
     }
 
     .hero-name {
       font-family: 'Cormorant Garamond', serif;
       font-weight: 300;
-      font-size: clamp(52px, 9vw, 96px);
+      font-size: clamp(48px, 7vw, 80px);
       line-height: 0.95;
       letter-spacing: -0.01em;
-      margin-bottom: 20px;
+      margin-bottom: 18px;
     }
 
     .hero-tagline {
       font-size: 14px;
-      color: var(--accent);
-      letter-spacing: 0.04em;
+      color: var(--mid);
+      letter-spacing: 0.02em;
     }
 
     /* ── QUOTE STRIP ── */
     .quote-strip {
       border-top: 1px solid rgba(200,191,168,0.15);
       border-bottom: 1px solid rgba(200,191,168,0.15);
-      padding: 28px 32px;
+      padding: 24px 32px;
       text-align: center;
     }
 
     .quote-strip p {
       font-family: 'Cormorant Garamond', serif;
       font-style: italic;
-      font-size: clamp(20px, 3vw, 28px);
+      font-size: clamp(18px, 3vw, 26px);
       font-weight: 300;
       color: var(--accent);
       letter-spacing: 0.02em;
@@ -117,7 +96,7 @@
     section {
       max-width: 860px;
       margin: 0 auto;
-      padding: 72px 32px;
+      padding: 64px 32px;
     }
 
     .section-label {
@@ -126,7 +105,7 @@
       letter-spacing: 0.2em;
       text-transform: uppercase;
       color: var(--mid);
-      margin-bottom: 32px;
+      margin-bottom: 28px;
     }
 
     /* ── LISTEN ── */
@@ -156,7 +135,7 @@
 
     .listen-link svg {
       flex-shrink: 0;
-      opacity: 0.7;
+      opacity: 0.75;
     }
 
     /* ── CONTACT ── */
@@ -189,7 +168,9 @@
       letter-spacing: 0.08em;
     }
 
-    @media (max-width: 540px) {
+    @media (max-width: 560px) {
+      .hero { flex-direction: column; align-items: flex-start; gap: 28px; padding-top: 52px; }
+      .hero-portrait { width: 120px; height: 120px; }
       .listen-grid { grid-template-columns: 1fr 1fr; }
     }
   </style>
@@ -198,9 +179,8 @@
 
   <!-- HERO -->
   <div class="hero">
-    <img class="hero-img" src="Mike_Kitai_Banner_3.jpg" alt="Mike Kitai" />
-    <div class="hero-overlay"></div>
-    <div class="hero-content">
+    <img class="hero-portrait" src="Mike_Kitai_Banner_3.jpg" alt="Mike Kitai" />
+    <div class="hero-text">
       <p class="hero-eyebrow">Tokyo · Singer-Songwriter</p>
       <h1 class="hero-name">Mike<br>Kitai</h1>
       <p class="hero-tagline">Based in Tokyo &mdash; making sounds, occasionally on purpose.</p>
@@ -217,38 +197,45 @@
     <p class="section-label">Listen</p>
     <div class="listen-grid">
 
+      <!-- Spotify -->
       <a class="listen-link" href="#" target="_blank" rel="noopener">
         <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.66 0 12 0zm5.521 17.34c-.24.359-.66.48-1.021.24-2.82-1.74-6.36-2.101-10.561-1.141-.418.122-.779-.179-.899-.539-.12-.421.18-.78.54-.9 4.56-1.021 8.52-.6 11.64 1.32.42.18.479.659.301 1.02zm1.44-3.3c-.301.42-.841.6-1.262.3-3.239-1.98-8.159-2.58-11.939-1.38-.479.12-1.02-.12-1.14-.6-.12-.48.12-1.021.6-1.141C9.6 9.9 15 10.561 18.72 12.84c.361.181.54.78.241 1.2zm.12-3.36C15.24 8.4 8.82 8.16 5.16 9.301c-.6.179-1.2-.181-1.38-.721-.18-.601.18-1.2.72-1.381 4.26-1.26 11.28-1.02 15.721 1.621.539.3.719 1.02.419 1.56-.299.421-1.02.599-1.559.3z"/></svg>
         Spotify
       </a>
 
+      <!-- Apple Music -->
       <a class="listen-link" href="#" target="_blank" rel="noopener">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.25 15.75a.748.748 0 0 1-.652.38.74.74 0 0 1-.37-.099l-3.228-1.86V16.5a.75.75 0 0 1-1.5 0V7.5a.75.75 0 0 1 1.5 0v4.92l3.228-1.86a.75.75 0 0 1 .75 1.299l-3 1.731 3 1.731a.75.75 0 0 1 .272 1.029z"/></svg>
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M23.994 6.124a9.23 9.23 0 00-.24-2.19c-.317-1.31-1.062-2.31-2.18-3.043a5.022 5.022 0 00-1.877-.726 10.496 10.496 0 00-1.564-.15c-.04-.003-.083-.01-.124-.013H5.986c-.152.01-.303.017-.455.026C4.786.07 4.043.15 3.34.428 2.067.958 1.158 1.866.518 3.09a5.38 5.38 0 00-.46 1.56 11.14 11.14 0 00-.056 1.562c0 .04-.006.082-.01.124v12.493c.008.15.015.298.027.445.07.753.15 1.496.43 2.198.53 1.273 1.437 2.182 2.658 2.822.52.267 1.078.39 1.65.452.668.072 1.34.1 2.01.1H18.42c.15-.006.302-.013.452-.022.748-.07 1.49-.15 2.19-.43 1.273-.527 2.182-1.437 2.822-2.655.267-.52.39-1.08.452-1.652.072-.667.1-1.34.1-2.01V6.55c-.006-.145-.013-.29-.022-.436zM12 17.5c-3.038 0-5.5-2.462-5.5-5.5S8.962 6.5 12 6.5s5.5 2.462 5.5 5.5-2.462 5.5-5.5 5.5zm0-9.5a4 4 0 100 8 4 4 0 000-8zm5.5-2a1 1 0 110 2 1 1 0 010-2z"/></svg>
         Apple Music
       </a>
 
+      <!-- SoundCloud -->
       <a class="listen-link" href="#" target="_blank" rel="noopener">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M11.56 8.87V17h4.43v-1.55h-2.88V8.87zm-3.37 0v6.58H5.82V8.87H4.27V17h5.37V8.87zM24 12c0 6.627-5.373 12-12 12S0 18.627 0 12 5.373 0 12 0s12 5.373 12 12zm-3 0c0-4.962-4.037-9-9-9s-9 4.038-9 9c0 4.963 4.037 9 9 9s9-4.037 9-9z"/></svg>
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M1.175 12.225c-.038 0-.068.026-.069.06l-.236 2.19.236 2.18c.001.036.03.06.069.06.037 0 .068-.026.068-.06l.27-2.18-.27-2.19c0-.034-.03-.06-.068-.06zm-.899.828c-.045 0-.083.033-.083.077l-.193 1.362.193 1.354c0 .044.038.077.083.077.044 0 .082-.033.082-.077l.222-1.354-.222-1.362c0-.044-.038-.077-.082-.077zM0 14.408l-.001.001.167 1.177.167-1.177V13.23l-.334 1.178zm2.248-3.283c-.051 0-.092.04-.092.09l-.252 2.277.252 2.268c0 .05.04.09.092.09.05 0 .09-.04.09-.09l.286-2.268-.286-2.277c0-.05-.04-.09-.09-.09zm.863-.457c-.063 0-.113.05-.113.113l-.27 2.734.27 2.724c0 .062.05.113.113.113.062 0 .112-.05.112-.113l.308-2.724-.308-2.734c0-.062-.05-.113-.112-.113zm.88-.205c-.075 0-.135.06-.135.135l-.287 2.94.287 2.927c0 .075.06.134.135.134.074 0 .134-.06.134-.134l.326-2.927-.326-2.94c0-.075-.06-.135-.134-.135zm.889-.129c-.088 0-.158.07-.158.157l-.303 3.069.303 3.056c0 .086.07.156.158.156.087 0 .157-.07.157-.156l.344-3.056-.344-3.069c0-.087-.07-.157-.157-.157zm.899-.066c-.1 0-.18.08-.18.18l-.32 3.135.32 3.12c0 .1.08.18.18.18.099 0 .179-.08.179-.18l.363-3.12-.363-3.135c0-.1-.08-.18-.179-.18zm.91.014c-.112 0-.202.09-.202.202l-.337 3.121.337 3.107c0 .111.09.2.202.2.11 0 .2-.089.2-.2l.382-3.107-.382-3.121c0-.112-.09-.202-.2-.202zm.919.046c-.124 0-.223.1-.223.223l-.354 3.075.354 3.06c0 .123.099.222.223.222.123 0 .222-.099.222-.222l.402-3.06-.402-3.075c0-.123-.099-.223-.222-.223zm5.846-1.93c-.392 0-.77.06-1.127.17-.232-2.638-2.432-4.696-5.12-4.696-.698 0-1.362.14-1.96.392-.226.091-.286.185-.288.27v9.275c.002.09.073.163.163.17h8.332c.46 0 .832-.373.832-.832V11.4c0-1.237-1.003-2.24-2.24-2.24l.408.003z"/></svg>
         SoundCloud
       </a>
 
+      <!-- YouTube -->
       <a class="listen-link" href="#" target="_blank" rel="noopener">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M23.495 6.205a3.007 3.007 0 0 0-2.088-2.088c-1.87-.501-9.396-.501-9.396-.501s-7.507-.01-9.396.501A3.007 3.007 0 0 0 .527 6.205a31.247 31.247 0 0 0-.522 5.805 31.247 31.247 0 0 0 .522 5.783 3.007 3.007 0 0 0 2.088 2.088c1.868.502 9.396.502 9.396.502s7.506 0 9.396-.502a3.007 3.007 0 0 0 2.088-2.088 31.247 31.247 0 0 0 .5-5.783 31.247 31.247 0 0 0-.5-5.805zM9.609 15.601V8.408l6.264 3.602z"/></svg>
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M23.495 6.205a3.007 3.007 0 00-2.088-2.088c-1.87-.501-9.396-.501-9.396-.501s-7.507-.01-9.396.501A3.007 3.007 0 00.527 6.205a31.247 31.247 0 00-.522 5.805 31.247 31.247 0 00.522 5.783 3.007 3.007 0 002.088 2.088c1.868.502 9.396.502 9.396.502s7.506 0 9.396-.502a3.007 3.007 0 002.088-2.088 31.247 31.247 0 00.5-5.783 31.247 31.247 0 00-.5-5.805zM9.609 15.601V8.408l6.264 3.602z"/></svg>
         YouTube
       </a>
 
+      <!-- YouTube Music -->
       <a class="listen-link" href="#" target="_blank" rel="noopener">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm0 21.601c-5.295 0-9.601-4.306-9.601-9.601S6.705 2.399 12 2.399 21.601 6.705 21.601 12 17.295 21.601 12 21.601zm-1.2-6.241v-6.72l5.76 3.36z"/></svg>
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.376 0 0 5.376 0 12s5.376 12 12 12 12-5.376 12-12S18.624 0 12 0zm0 19.2c-3.972 0-7.2-3.228-7.2-7.2S8.028 4.8 12 4.8s7.2 3.228 7.2 7.2-3.228 7.2-7.2 7.2zm0-11.4c-2.316 0-4.2 1.884-4.2 4.2s1.884 4.2 4.2 4.2 4.2-1.884 4.2-4.2-1.884-4.2-4.2-4.2zm0 5.4c-.66 0-1.2-.54-1.2-1.2s.54-1.2 1.2-1.2 1.2.54 1.2 1.2-.54 1.2-1.2 1.2z"/></svg>
         YouTube Music
       </a>
 
+      <!-- Amazon Music -->
       <a class="listen-link" href="#" target="_blank" rel="noopener">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M1.543 7.576L12 2.255l10.457 5.32L12 12.898 1.543 7.576zm10.457 6.567L.772 8.817 0 9.21v6.124l12 6.411 12-6.411V9.21l-.772-.393-11.228 4.926z"/></svg>
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M13.958 10.09c0 1.232.029 2.256-.591 3.351-.502.891-1.301 1.438-2.186 1.438-1.214 0-1.922-.924-1.922-2.292 0-2.692 2.415-3.182 4.699-3.182v.685zm3.186 7.705c-.209.189-.512.201-.745.074-1.052-.872-1.238-1.276-1.814-2.106-1.734 1.767-2.962 2.297-5.209 2.297-2.66 0-4.731-1.641-4.731-4.925 0-2.565 1.391-4.309 3.37-5.164 1.715-.754 4.11-.891 5.942-1.095v-.41c0-.753.06-1.642-.384-2.294-.385-.579-1.134-.82-1.789-.82-1.215 0-2.298.625-2.563 1.919-.054.285-.261.567-.547.58l-3.064-.327c-.259-.057-.548-.266-.472-.66C5.87 1.945 8.91.525 11.6.163c1.365-.017 3.148.362 4.227 1.392 1.365 1.275 1.235 2.976 1.235 4.83v4.375c0 1.315.548 1.893 1.063 2.601.181.254.221.557-.01.745l-2.972 2.689h.001zM21.479 19.161c-1.719 1.272-4.217 1.947-6.366 1.947-3.012 0-5.723-1.113-7.771-2.962-.161-.146-.018-.344.177-.231 2.213 1.285 4.949 2.059 7.773 2.059 1.906 0 4.001-.394 5.931-1.213.291-.124.536.191.256.4zm.738-1.635c-.221-.284-1.465-.134-2.024-.068-.168.02-.195-.127-.043-.233 1.253-.875 3.308-.623 3.567-.33.258.294-.066 2.345-1.25 3.348-.183.153-.357.072-.276-.129.264-.653.856-2.108.026-2.588z"/></svg>
         Amazon Music
       </a>
 
+      <!-- Bandcamp -->
       <a class="listen-link" href="#" target="_blank" rel="noopener">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.373 0 0 5.373 0 12c0 5.623 3.872 10.328 9.092 11.63C9.036 23.468 9 23.266 9 23.041v-2.058c-.487 0-1.303 0-1.508 0-.821 0-1.551-.353-1.905-1.009-.393-.729-.461-1.844-1.435-2.526-.289-.227-.069-.486.264-.451.615.174 1.125.596 1.605 1.222.478.627.703.769 1.596.769.433 0 1.081-.025 1.691-.121.328-.833.895-1.6 1.588-1.962-4.068-.575-5.93-2.739-5.93-5.62 0-1.23.433-2.373 1.281-3.32-.288-.948-.437-2.038.046-3.021 1.028-.096 3.093.775 3.962 1.388.913-.256 1.877-.392 2.84-.392s1.927.136 2.84.392c.868-.613 2.933-1.484 3.961-1.388.483.983.334 2.073.046 3.021.848.947 1.281 2.09 1.281 3.32 0 2.881-1.862 5.045-5.93 5.62 1.045.522 1.756 2.049 1.756 3.174v3.047c0 .189-.028.367-.073.54C20.14 22.314 24 17.616 24 12c0-6.627-5.373-12-12-12z"/></svg>
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M0 18.75l7.437-13.5H24l-7.438 13.5z"/></svg>
         Bandcamp
       </a>
 
@@ -256,7 +243,7 @@
   </section>
 
   <!-- CONTACT -->
-  <section id="contact" style="border-top: 1px solid rgba(200,191,168,0.1); padding-top: 72px;">
+  <section id="contact" style="border-top: 1px solid rgba(200,191,168,0.1);">
     <p class="section-label">Contact</p>
     <p class="contact-line">For bookings, collabs, or just to say hi —</p>
     <a class="contact-email" href="mailto:info@mikekitai.com">info@mikekitai.com</a>
