@@ -245,7 +245,9 @@
     }
 
     @media (max-width: 480px) {
-      .team-grid.centered { grid-template-columns: repeat(2, 140px); }
+      .team-grid.centered .team-card {
+        width: 140px;
+      }
     }
   </style>
 </head>
@@ -437,7 +439,7 @@
     <p class="team-section-title">Technical Staff</p>
     <div class="team-grid centered">
       <div class="team-card">
-        <img src="guitar tech.JPG" alt="Guitar Tech" style="object-position: 20% center;" />
+        <img src="guitar tech.JPG" alt="Guitar Tech" style="object-position: 35% center;" />
         <span class="name">Rupert Strings</span>
         <span class="role">Guitar Technician</span>
       </div>
