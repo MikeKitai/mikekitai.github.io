@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Mike Kitai — Gallery</title>
+  <title>Mike Kitai — Our Team</title>
   <!-- Google tag (gtag.js) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-2ZZ6YZRC86"></script>
   <script>
@@ -36,22 +36,11 @@
       overflow-x: hidden;
     }
 
-    /* ── ANIMATED GRADIENT ── */
     .gradient-bg {
       position: fixed;
       inset: 0;
       z-index: -1;
-      background: linear-gradient(
-        135deg,
-        #1a0a2e,
-        #0d1f4a,
-        #2d0f3d,
-        #0a2a3a,
-        #3d0f2a,
-        #0f2d2a,
-        #2a0f4a,
-        #1a0a2e
-      );
+      background: linear-gradient(135deg, #1a0a2e, #0d1f4a, #2d0f3d, #0a2a3a, #3d0f2a, #0f2d2a, #2a0f4a, #1a0a2e);
       background-size: 400% 400%;
       animation: gradientShift 18s ease infinite;
     }
@@ -67,9 +56,7 @@
     /* ── NAVBAR ── */
     .navbar {
       position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
+      top: 0; left: 0; right: 0;
       z-index: 100;
       display: grid;
       grid-template-columns: 36px 1fr 36px;
@@ -136,10 +123,10 @@
 
     .nav-menu.open { display: block; }
 
-    .nav-menu a {
+    .nav-link {
       display: block;
       padding: 12px 24px;
-      color: var(--white);
+      color: #f7f6f3;
       text-decoration: none;
       font-size: 13px;
       letter-spacing: 0.08em;
@@ -148,59 +135,108 @@
       transition: opacity 0.2s, background 0.2s;
     }
 
-    .nav-menu a:hover {
+    .nav-link:hover {
       opacity: 1;
       background: rgba(200,191,168,0.06);
     }
 
-    /* ── GALLERY ── */
-    .gallery-header {
+    /* ── PAGE ── */
+    .page-header {
       max-width: 860px;
       margin: 0 auto;
-      padding: 92px 32px 20px;
+      padding: 92px 32px 8px;
       text-align: center;
     }
 
-    .gallery-header h2 {
+    .page-header h2 {
       font-family: 'Cormorant Garamond', serif;
       font-weight: 300;
-      font-size: clamp(32px, 5vw, 52px);
+      font-size: clamp(36px, 5vw, 56px);
       letter-spacing: -0.01em;
-      color: var(--white);
+      margin-bottom: 8px;
     }
 
-    .masonry {
-      columns: 3 220px;
-      column-gap: 12px;
-      max-width: 1100px;
-      margin: 0 auto;
-      padding: 0 24px 48px;
-    }
-
-    .masonry-item {
-      break-inside: avoid;
-      margin-bottom: 12px;
-    }
-
-    .masonry-item img {
-      width: 100%;
-      display: block;
-      border: 1px solid rgba(200,191,168,0.1);
-      transition: opacity 0.2s;
-    }
-
-    .masonry-item img:hover { opacity: 0.85; }
-
-    .gallery-empty {
-      text-align: center;
-      padding: 60px 32px;
+    .page-header p {
+      font-size: 12px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
       color: var(--mid);
-      font-size: 13px;
-      letter-spacing: 0.08em;
     }
 
-    @media (max-width: 560px) {
-      .masonry { columns: 2 140px; }
+    /* ── TEAM SECTIONS ── */
+    .team-section {
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 40px 24px 0;
+    }
+
+    .team-section-title {
+      font-size: 10px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--mid);
+      margin-bottom: 24px;
+      padding-bottom: 10px;
+      border-bottom: 1px solid rgba(200,191,168,0.1);
+    }
+
+    .team-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+      gap: 24px;
+      margin-bottom: 8px;
+    }
+
+    .team-grid.centered {
+      justify-content: center;
+      grid-template-columns: repeat(auto-fit, 160px);
+    }
+
+    .team-card {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      gap: 10px;
+    }
+
+    .team-card img {
+      width: 120px;
+      height: 120px;
+      object-fit: cover;
+      border-radius: 50%;
+      border: 1px solid rgba(200,191,168,0.2);
+      filter: grayscale(20%);
+    }
+
+    .team-card .name {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 17px;
+      font-weight: 400;
+      color: var(--white);
+      line-height: 1.2;
+    }
+
+    .team-card .role {
+      font-size: 10px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--accent);
+      line-height: 1.4;
+    }
+
+    footer {
+      border-top: 1px solid rgba(200,191,168,0.1);
+      padding: 28px 32px;
+      text-align: center;
+      font-size: 11px;
+      color: var(--mid);
+      letter-spacing: 0.08em;
+      margin-top: 48px;
+    }
+
+    @media (max-width: 480px) {
+      .team-grid { grid-template-columns: repeat(2, 1fr); }
     }
   </style>
 </head>
@@ -208,46 +244,187 @@
 
   <div class="gradient-bg"></div>
 
-  <!-- NAVBAR -->
   <nav class="navbar">
     <a class="navbar-name" href="index.html">Mike Kitai</a>
     <button class="hamburger" id="hamburger" aria-label="Menu">
-      <span></span>
-      <span></span>
-      <span></span>
+      <span></span><span></span><span></span>
     </button>
     <div class="nav-menu" id="nav-menu">
-      <a href="index.html">Home</a>
-      <a href="gallery.html">Gallery</a>
+      <a class="nav-link" href="index.html">Home</a>
+      <a class="nav-link" href="gallery.html">Our Team</a>
     </div>
   </nav>
 
-  <!-- GALLERY -->
-  <div class="gallery-header">
-    <h2>Gallery</h2>
+  <div class="page-header">
+    <h2>Our Team</h2>
+    <p>The people behind the music</p>
   </div>
 
-  <div class="masonry" id="masonry">
-    <div class="masonry-item"><img src="IMG_5766.jpeg" alt="" /></div>
-    <div class="masonry-item"><img src="IMG_5758.jpeg" alt="" /></div>
-    <div class="masonry-item"><img src="IMG_5769.jpeg" alt="" /></div>
-    <div class="masonry-item"><img src="IMG_5772.jpeg" alt="" /></div>
-    <div class="masonry-item"><img src="IMG_5777.jpeg" alt="" /></div>
-    <div class="masonry-item"><img src="IMG_5792.jpeg" alt="" /></div>
-    <div class="masonry-item"><img src="IMG_5806.jpeg" alt="" /></div>
-    <div class="masonry-item"><img src="IMG_5828.jpeg" alt="" /></div>
-    <div class="masonry-item"><img src="IMG_5890.jpeg" alt="" /></div>
-    <div class="masonry-item"><img src="IMG_5913.jpeg" alt="" /></div>
-    <div class="masonry-item"><img src="IMG_6226.jpeg" alt="" /></div>
-    <div class="masonry-item"><img src="IMG_6250.png" alt="" /></div>
-    <div class="masonry-item"><img src="IMG_6591.jpeg" alt="" /></div>
-    <div class="masonry-item"><img src="IMG_7067.jpeg" alt="" /></div>
-    <div class="masonry-item"><img src="IMG_7860.jpeg" alt="" /></div>
-    <div class="masonry-item"><img src="IMG_8156.jpeg" alt="" /></div>
-    <div class="masonry-item"><img src="IMG_8348.jpeg" alt="" /></div>
-    <div class="masonry-item"><img src="IMG_9621.jpeg" alt="" /></div>
-    <div class="masonry-item"><img src="IMG_9672.jpeg" alt="" /></div>
+  <!-- EXECUTIVE LEADERSHIP -->
+  <div class="team-section">
+    <p class="team-section-title">Executive Leadership</p>
+    <div class="team-grid centered">
+      <div class="team-card">
+        <img src="band_manager.JPG" alt="Band Manager" />
+        <span class="name">Gerald Hutchinson</span>
+        <span class="role">Chief Executive Officer</span>
+      </div>
+      <div class="team-card">
+        <img src="executive_branch_manager.jpg" alt="Executive" />
+        <span class="name">Montgomery Briggs</span>
+        <span class="role">Chief Operating Officer</span>
+      </div>
+      <div class="team-card">
+        <img src="chief_financial_officer.PNG" alt="CFO" />
+        <span class="name">Patricia Wentworth</span>
+        <span class="role">Chief Financial Officer</span>
+      </div>
+      <div class="team-card">
+        <img src="chief_DEI_officer.JPG" alt="DEI Officer" />
+        <span class="name">Cornelius Fairbanks</span>
+        <span class="role">Chief Diversity, Equity & Inclusion Officer</span>
+      </div>
+    </div>
   </div>
+
+  <!-- OPERATIONS -->
+  <div class="team-section">
+    <p class="team-section-title">Operations & Strategy</p>
+    <div class="team-grid">
+      <div class="team-card">
+        <img src="head_of_operations.JPG" alt="Head of Operations" />
+        <span class="name">Reginald Forsythe</span>
+        <span class="role">Vice President, Operations</span>
+      </div>
+      <div class="team-card">
+        <img src="aquisitions.JPG" alt="Acquisitions" />
+        <span class="name">Barnaby Whitlock</span>
+        <span class="role">Director of Strategic Acquisitions</span>
+      </div>
+      <div class="team-card">
+        <img src="head_of_human_resources.JPG" alt="HR" />
+        <span class="name">Millicent Hogg</span>
+        <span class="role">Vice President, Human Resources</span>
+      </div>
+      <div class="team-card">
+        <img src="photography_and_social_media.JPG" alt="Photography" />
+        <span class="name">Sebastiano Lentz</span>
+        <span class="role">Director of Photography & Social Media</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- CATERING -->
+  <div class="team-section">
+    <p class="team-section-title">Hospitality & Catering</p>
+    <div class="team-grid centered">
+      <div class="team-card">
+        <img src="catering.PNG" alt="Catering" />
+        <span class="name">Bartholomew Chew</span>
+        <span class="role">Head of Catering & Artist Hospitality</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECURITY -->
+  <div class="team-section">
+    <p class="team-section-title">Security & Risk Management</p>
+    <div class="team-grid">
+      <div class="team-card">
+        <img src="head_of_security.png" alt="Head of Security" />
+        <span class="name">Douglas Ramsgate</span>
+        <span class="role">Chief Security Officer</span>
+      </div>
+      <div class="team-card">
+        <img src="backstage_security_manager.JPG" alt="Backstage Security" />
+        <span class="name">Terrence Bullock</span>
+        <span class="role">Senior Security Manager</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- TOURING -->
+  <div class="team-section">
+    <p class="team-section-title">Live & Touring</p>
+    <div class="team-grid">
+      <div class="team-card">
+        <img src="tour_bus_driver.JPG" alt="Tour Bus Driver" />
+        <span class="name">Humphrey Calloway</span>
+        <span class="role">Director of Ground Transportation</span>
+      </div>
+      <div class="team-card">
+        <img src="live_mix_engineer.JPG" alt="Live Mix Engineer" />
+        <span class="name">Desmond Fitch</span>
+        <span class="role">Senior Live Audio Engineer</span>
+      </div>
+      <div class="team-card">
+        <img src="pyrotechnics.JPG" alt="Pyrotechnics" />
+        <span class="name">Ignatius Blaze</span>
+        <span class="role">Head of Pyrotechnics & Special Effects</span>
+      </div>
+      <div class="team-card">
+        <img src="stage_choreographer.JPG" alt="Stage Choreographer" />
+        <span class="name">Evangeline Stride</span>
+        <span class="role">Creative Director, Stage Production</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- BAND -->
+  <div class="team-section">
+    <p class="team-section-title">Performing Artists</p>
+    <div class="team-grid">
+      <div class="team-card">
+        <img src="lead_guitar.JPG" alt="Lead Guitar" />
+        <span class="name">Alistair Fender</span>
+        <span class="role">Lead Guitar</span>
+      </div>
+      <div class="team-card">
+        <img src="bass_guitar.JPG" alt="Bass Guitar" />
+        <span class="name">Cornelius Low</span>
+        <span class="role">Bass Guitar</span>
+      </div>
+      <div class="team-card">
+        <img src="drums.JPG" alt="Drums" />
+        <span class="name">Maxwell Thump</span>
+        <span class="role">Drums & Percussion</span>
+      </div>
+      <div class="team-card">
+        <img src="keys_and_acoustic_guitar.JPG" alt="Keys" />
+        <span class="name">Fitzgerald Moore</span>
+        <span class="role">Keys & Acoustic Guitar</span>
+      </div>
+      <div class="team-card">
+        <img src="guitar_and_backing_vocals.JPG" alt="Guitar and Backing Vocals" />
+        <span class="name">Sylvester Chord</span>
+        <span class="role">Guitar & Backing Vocals</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- TECHNICIANS -->
+  <div class="team-section">
+    <p class="team-section-title">Technical Staff</p>
+    <div class="team-grid">
+      <div class="team-card">
+        <img src="guitar_tech.JPG" alt="Guitar Tech" />
+        <span class="name">Rupert Strings</span>
+        <span class="role">Guitar Technician</span>
+      </div>
+      <div class="team-card">
+        <img src="bass_tech.JPG" alt="Bass Tech" />
+        <span class="name">Archibald Bass</span>
+        <span class="role">Bass Technician</span>
+      </div>
+      <div class="team-card">
+        <img src="drum_tech.JPG" alt="Drum Tech" />
+        <span class="name">Wellington Snare</span>
+        <span class="role">Drum Technician</span>
+      </div>
+    </div>
+  </div>
+
+  <footer>&copy; 2026 Northwell Media</footer>
 
   <script>
     const hamburger = document.getElementById('hamburger');
