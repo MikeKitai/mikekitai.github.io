@@ -12,8 +12,8 @@
 
     :root {
       --white: #f7f6f3;
-      --off-black: #111110;
-      --mid: #6b6b67;
+      --off-black: #1a1020;
+      --mid: #7a6d8a;
       --accent: #c8bfa8;
     }
 
@@ -32,7 +32,7 @@
     .hero {
       max-width: 860px;
       margin: 0 auto;
-      padding: 80px 32px 64px;
+      padding: 56px 32px 40px;
       display: flex;
       align-items: center;
       gap: 52px;
@@ -96,7 +96,7 @@
     section {
       max-width: 860px;
       margin: 0 auto;
-      padding: 64px 32px;
+      padding: 40px 32px;
     }
 
     .section-label {
@@ -141,8 +141,11 @@
       flex-shrink: 0;
       width: 16px;
       height: 16px;
+      min-width: 16px;
+      min-height: 16px;
       fill: var(--white);
       opacity: 0.85;
+      overflow: hidden;
     }
 
     /* ── CONTACT ── */
