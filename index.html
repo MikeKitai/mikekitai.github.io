@@ -61,11 +61,80 @@
       100% { background-position: 0% 50%; }
     }
 
+    /* ── NAVBAR ── */
+    .navbar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 100;
+      display: grid;
+      grid-template-columns: 36px 1fr 36px;
+      align-items: center;
+      padding: 0 32px;
+      height: 60px;
+      background: rgba(10, 5, 20, 0.85);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(200,191,168,0.1);
+    }
+
+    .navbar-name {
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 300;
+      font-size: clamp(28px, 5vw, 48px);
+      letter-spacing: -0.01em;
+      color: var(--white);
+      white-space: nowrap;
+      text-align: center;
+      grid-column: 2;
+    }
+
+    .hamburger {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 5px;
+      width: 36px;
+      height: 36px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 4px;
+    }
+
+    .hamburger span {
+      display: block;
+      width: 22px;
+      height: 1.5px;
+      background: var(--white);
+      opacity: 0.8;
+      transition: opacity 0.2s;
+    }
+
+    .hamburger:hover span { opacity: 1; }
+
+    .nav-menu {
+      display: none;
+      position: absolute;
+      top: 60px;
+      right: 0;
+      min-width: 200px;
+      background: rgba(10, 5, 20, 0.95);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border: 1px solid rgba(200,191,168,0.1);
+      border-top: none;
+      padding: 8px 0;
+    }
+
+    .nav-menu.open { display: block; }
+
     /* ── HERO ── */
     .hero {
       max-width: 860px;
       margin: 0 auto;
-      padding: 32px 32px 16px;
+      padding: 84px 32px 16px;
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -95,10 +164,11 @@
     .hero-name {
       font-family: 'Cormorant Garamond', serif;
       font-weight: 300;
-      font-size: clamp(48px, 7vw, 80px);
-      line-height: 0.95;
+      font-size: clamp(28px, 8vw, 80px);
+      line-height: 1;
       letter-spacing: -0.01em;
       margin-bottom: 10px;
+      white-space: nowrap;
     }
 
     .hero-quote {
@@ -150,7 +220,7 @@
       letter-spacing: 0.2em;
       text-transform: uppercase;
       color: var(--mid);
-      margin-bottom: 28px;
+      margin-bottom: 12px;
     }
 
     /* ── LINK GRIDS ── */
@@ -232,12 +302,21 @@
 
   <div class="gradient-bg"></div>
 
+  <!-- NAVBAR -->
+  <nav class="navbar">
+    <span class="navbar-name">Mike Kitai</span>
+    <button class="hamburger" id="hamburger" aria-label="Menu">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+    <div class="nav-menu" id="nav-menu"></div>
+  </nav>
+
   <!-- HERO -->
   <div class="hero">
     <img class="hero-portrait" src="Mike_Kitai_Banner_3.jpg" alt="Mike Kitai" />
-    <div class="hero-text">
-      <p class="hero-eyebrow">Tokyo · Singer-Songwriter</p>
-      <h1 class="hero-name">Mike<br>Kitai</h1>
+    <div class="hero-subtext">
       <p class="hero-quote">I make &ldquo;music&rdquo;</p>
       <div class="hero-socials">
         <a class="social-icon" href="https://www.instagram.com/mikekitai?igsh=MXB3OXppbXY5cTZmMg%3D%3D&utm_source=qr" target="_blank" rel="noopener" aria-label="Instagram">
@@ -307,6 +386,17 @@
   <footer>
     &copy; 2026 Northwell Media
   </footer>
+
+  <script>
+    const hamburger = document.getElementById('hamburger');
+    const navMenu = document.getElementById('nav-menu');
+    hamburger.addEventListener('click', () => navMenu.classList.toggle('open'));
+    document.addEventListener('click', (e) => {
+      if (!hamburger.contains(e.target) && !navMenu.contains(e.target)) {
+        navMenu.classList.remove('open');
+      }
+    });
+  </script>
 
 </body>
 </html>
