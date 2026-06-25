@@ -432,7 +432,7 @@
 
     <div class="apply-section">
       <p>To apply, send your CV and a brief personal statement to</p>
-      <a class="apply-email" href="mailto:careers@mikekitai.com">careers@mikekitai.com</a>
+      <a class="apply-email" href="mailto:careers@mikekitai.com" onclick="copyCareerEmail(event)"><span id="careers-email-text" style="transition: opacity 0.3s;">careers@mikekitai.com</span></a>
       <p class="apply-note">Please include the role title in the subject line. Applications submitted without a subject line will be reviewed last, or possibly not at all.</p>
     </div>
 
@@ -449,6 +449,35 @@
         navMenu.classList.remove('open');
       }
     });
+
+    function copyCareerEmail(e) {
+      e.preventDefault();
+      try {
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+          navigator.clipboard.writeText('careers@mikekitai.com').then(() => {
+            const span = document.getElementById('careers-email-text');
+            span.style.opacity = '0';
+            setTimeout(() => {
+              span.textContent = 'Copied!';
+              span.style.opacity = '1';
+              setTimeout(() => {
+                span.style.opacity = '0';
+                setTimeout(() => {
+                  span.textContent = 'careers@mikekitai.com';
+                  span.style.opacity = '1';
+                }, 300);
+              }, 1500);
+            }, 300);
+          }).catch(() => {
+            window.location.href = 'mailto:careers@mikekitai.com';
+          });
+        } else {
+          window.location.href = 'mailto:careers@mikekitai.com';
+        }
+      } catch(err) {
+        window.location.href = 'mailto:careers@mikekitai.com';
+      }
+    }
   </script>
 
 </body>
