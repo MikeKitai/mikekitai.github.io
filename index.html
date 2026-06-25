@@ -351,7 +351,7 @@
 
   <!-- HERO -->
   <div class="hero">
-    <img class="hero-portrait" src="Mike Kitai Reduced.jpg" alt="Mike Kitai" />
+    <img class="hero-portrait" src="Mike Kitai Reduced.jpg" alt="Mike Kitai" id="hero-portrait" onclick="portraitTap()" style="cursor:pointer;" />
     <div class="hero-subtext">
       <p class="hero-quote" id="hero-quote" onclick="quoteClick()"><span id="typed-quote"></span><span id="typed-cursor" style="display:inline-block;width:2px;height:0.9em;background:currentColor;margin-left:2px;vertical-align:text-bottom;animation:blink 0.8s step-end infinite;"></span></p>
       <div class="hero-socials">
@@ -427,6 +427,20 @@
         navMenu.classList.remove('open');
       }
     });
+
+    // ── PORTRAIT TAP SPEED ──
+    const speeds = [18, 5, 2, 0.5, 0.1];
+    let speedIndex = 0;
+    const gradientBg = document.querySelector('.gradient-bg');
+
+    function portraitTap() {
+      speedIndex = (speedIndex + 1) % speeds.length;
+      const speed = speeds[speedIndex];
+      gradientBg.style.animationDuration = speed + 's';
+      if (speedIndex === 0) {
+        gradientBg.style.animationDuration = '';
+      }
+    }
 
     // ── TYPING ANIMATION ──
     const quoteText = 'I make \u201cmusic\u201d';
