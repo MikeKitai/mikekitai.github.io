@@ -409,7 +409,8 @@
   </section>
 
   <!-- SPOTIFY -->
-  <section id="spotify" style="border-top: 1px solid rgba(200,191,168,0.1);">
+  <div class="falling-divider" style="border-top: 1px solid rgba(200,191,168,0.1); margin: 0 32px; height: 1px;"></div>
+  <section id="spotify">
     <p class="section-label">🎵 Latest Release</p>
     <iframe class="spotify-embed" src="https://open.spotify.com/embed/track/2gRXvsvdjTAfIAO2V10SN1?utm_source=generator&theme=0" width="100%" height="152" frameborder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy" style="border-radius:4px;"></iframe>
   </section>
@@ -478,7 +479,7 @@
     function triggerGravity() {
       gravityActive = true;
       const allEls = document.querySelectorAll(
-        '.hero-portrait, .hero-eyebrow, .hero-name, #hero-quote, .hero-socials, #email-link, .section-label, .platform-link, .spotify-embed, footer'
+        '.hero-portrait, .hero-eyebrow, .hero-name, #hero-quote, .hero-socials, #email-link, .section-label, .platform-link, .spotify-embed, .falling-divider, footer'
       );
 
       physicsEls = [];
@@ -549,7 +550,7 @@
             setTimeout(() => {
               physicsEls.forEach(p => p.el.remove());
               document.querySelectorAll(
-                '.hero-portrait, .hero-eyebrow, .hero-name, #hero-quote, .hero-socials, #email-link, .section-label, .platform-link, .spotify-embed, footer'
+                '.hero-portrait, .hero-eyebrow, .hero-name, #hero-quote, .hero-socials, #email-link, .section-label, .platform-link, .spotify-embed, .falling-divider, footer'
               ).forEach(el => el.style.visibility = '');
               gravityActive = false;
             }, 800);
