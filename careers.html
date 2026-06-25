@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mike Kitai — Careers</title>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-2ZZ6YZRC86"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-2ZZ6YZRC86');
+  </script>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='16' fill='%231a1020'/><text x='50' y='68' font-family='Georgia,serif' font-size='42' font-weight='bold' fill='%23c8bfa8' text-anchor='middle'>MK</text></svg>" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;700&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300&family=DM+Serif+Display&family=Inter:wght@300;400&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --white: #f7f6f3;
+      --mid: #7a6d8a;
+      --accent: #c8bfa8;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      color: var(--white);
+      font-family: 'Inter', sans-serif;
+      font-weight: 300;
+      font-size: 15px;
+      line-height: 1.7;
+      overflow-x: hidden;
+    }
+
+    .gradient-bg {
+      position: fixed;
+      inset: 0;
+      z-index: -1;
+      background: linear-gradient(135deg, #2d0f52, #0d2a6e, #4a0f5e, #0a3a5a, #5e0f3a, #0f4a3a, #3a0f6e, #2d0f52);
+      background-size: 400% 400%;
+      animation: gradientShift 18s ease infinite;
+    }
+
+    @keyframes gradientShift {
+      0%   { background-position: 0% 50%; }
+      25%  { background-position: 100% 0%; }
+      50%  { background-position: 100% 100%; }
+      75%  { background-position: 0% 100%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    /* ── NAVBAR ── */
+    .navbar {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: grid;
+      grid-template-columns: 36px 1fr 36px;
+      align-items: center;
+      padding: 0 32px;
+      height: 68px;
+      background: rgba(10, 5, 20, 0.85);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(200,191,168,0.1);
+    }
+
+    .navbar-name {
+      font-family: 'DM Serif Display', serif;
+      font-weight: 400;
+      font-size: clamp(24px, 4vw, 42px);
+      letter-spacing: -0.01em;
+      color: var(--white);
+      white-space: nowrap;
+      text-align: center;
+      grid-column: 2;
+      line-height: 1;
+      text-decoration: none;
+    }
+
+    .hamburger {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 5px;
+      width: 36px;
+      height: 36px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 4px;
+      grid-column: 3;
+    }
+
+    .hamburger span {
+      display: block;
+      width: 22px;
+      height: 1.5px;
+      background: var(--white);
+      opacity: 0.8;
+      transition: opacity 0.2s;
+    }
+
+    .hamburger:hover span { opacity: 1; }
+
+    .nav-menu {
+      display: none;
+      position: absolute;
+      top: 68px;
+      right: 0;
+      min-width: 200px;
+      background: rgba(10, 5, 20, 0.95);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border: 1px solid rgba(200,191,168,0.1);
+      border-top: none;
+      padding: 8px 0;
+    }
+
+    .nav-menu.open { display: block; }
+
+    .nav-link {
+      display: block;
+      padding: 12px 24px;
+      color: #f7f6f3;
+      text-decoration: none;
+      font-size: 13px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      opacity: 0.7;
+      transition: opacity 0.2s, background 0.2s;
+    }
+
+    .nav-link:hover {
+      opacity: 1;
+      background: rgba(200,191,168,0.06);
+    }
+
+    /* ── PAGE ── */
+    .page-wrap {
+      max-width: 760px;
+      margin: 0 auto;
+      padding: 100px 32px 60px;
+    }
+
+    .page-eyebrow {
+      font-size: 11px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--mid);
+      margin-bottom: 10px;
+    }
+
+    .page-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 300;
+      font-size: clamp(36px, 5vw, 56px);
+      letter-spacing: -0.01em;
+      line-height: 1;
+      margin-bottom: 16px;
+    }
+
+    .page-intro {
+      font-size: 13px;
+      color: var(--mid);
+      max-width: 520px;
+      margin-bottom: 40px;
+      line-height: 1.7;
+    }
+
+    /* ── STATS ── */
+    .stats {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-bottom: 40px;
+    }
+
+    .stat-pill {
+      background: rgba(200,191,168,0.07);
+      border: 1px solid rgba(200,191,168,0.15);
+      border-radius: 4px;
+      padding: 8px 16px;
+      font-size: 12px;
+      color: var(--accent);
+      letter-spacing: 0.04em;
+    }
+
+    /* ── JOB LISTINGS ── */
+    .listings {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      margin-bottom: 40px;
+    }
+
+    .listing {
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(200,191,168,0.15);
+      border-radius: 4px;
+      padding: 24px 28px;
+      transition: background 0.2s, border-color 0.2s;
+    }
+
+    .listing:hover {
+      background: rgba(200,191,168,0.06);
+      border-color: rgba(200,191,168,0.3);
+    }
+
+    .listing-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 12px;
+      margin-bottom: 6px;
+      flex-wrap: wrap;
+    }
+
+    .listing-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 22px;
+      font-weight: 400;
+      color: var(--white);
+      line-height: 1.2;
+    }
+
+    .listing-badge {
+      font-size: 10px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      padding: 4px 10px;
+      border-radius: 2px;
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+
+    .badge-urgent {
+      background: rgba(200,80,60,0.2);
+      color: #e88;
+      border: 1px solid rgba(200,80,60,0.3);
+    }
+
+    .badge-new {
+      background: rgba(80,160,120,0.2);
+      color: #8d8;
+      border: 1px solid rgba(80,160,120,0.3);
+    }
+
+    .badge-open {
+      background: rgba(200,191,168,0.1);
+      color: var(--accent);
+      border: 1px solid rgba(200,191,168,0.2);
+    }
+
+    .listing-meta {
+      font-size: 11px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--mid);
+      margin-bottom: 14px;
+    }
+
+    .listing-description {
+      font-size: 13px;
+      color: rgba(247,246,243,0.7);
+      line-height: 1.8;
+      margin-bottom: 16px;
+    }
+
+    .listing-requirements {
+      font-size: 12px;
+      color: var(--mid);
+      border-top: 1px solid rgba(200,191,168,0.1);
+      padding-top: 14px;
+      line-height: 1.8;
+    }
+
+    .listing-requirements strong {
+      color: var(--accent);
+      font-weight: 400;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      font-size: 10px;
+      display: block;
+      margin-bottom: 4px;
+    }
+
+    /* ── APPLY ── */
+    .apply-section {
+      border-top: 1px solid rgba(200,191,168,0.1);
+      padding-top: 32px;
+      text-align: center;
+    }
+
+    .apply-section p {
+      font-size: 12px;
+      color: var(--mid);
+      margin-bottom: 6px;
+    }
+
+    .apply-email {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 24px;
+      font-weight: 300;
+      color: var(--white);
+      text-decoration: none;
+      border-bottom: 1px solid rgba(200,191,168,0.3);
+      padding-bottom: 2px;
+      transition: border-color 0.2s;
+    }
+
+    .apply-email:hover { border-color: var(--accent); }
+
+    .apply-note {
+      font-size: 11px;
+      color: var(--mid);
+      margin-top: 12px;
+      font-style: italic;
+    }
+
+    footer {
+      border-top: 1px solid rgba(200,191,168,0.1);
+      padding: 28px 32px;
+      text-align: center;
+      font-size: 11px;
+      color: var(--mid);
+      letter-spacing: 0.08em;
+      margin-top: 0;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="gradient-bg"></div>
+
+  <nav class="navbar">
+    <a class="navbar-name" href="index.html">Mike Kitai</a>
+    <button class="hamburger" id="hamburger" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+    <div class="nav-menu" id="nav-menu">
+      <a class="nav-link" href="index.html">Home</a>
+      <a class="nav-link" href="ourteam.html">Our Team</a>
+      <a class="nav-link" href="careers.html">Careers</a>
+      <a class="nav-link" href="careers.html">Careers</a>
+    </div>
+  </nav>
+
+  <div class="page-wrap">
+
+    <p class="page-eyebrow">Northwell Media — Human Resources</p>
+    <h1 class="page-title">Join Our Team</h1>
+    <p class="page-intro">We are a fast-moving, globally-minded organisation committed to excellence, innovation, and the responsible management of one singer-songwriter based in Tokyo. We are always looking for exceptional talent to help us achieve our mission.</p>
+
+    <div class="stats">
+      <div class="stat-pill">📍 Tokyo, Japan</div>
+      <div class="stat-pill">🌐 Remote considered for suitable candidates</div>
+      <div class="stat-pill">⚡ 4 open positions</div>
+    </div>
+
+    <div class="listings">
+
+      <!-- CHORD RESEARCHER -->
+      <div class="listing">
+        <div class="listing-header">
+          <span class="listing-title">Chord Researcher</span>
+          <span class="listing-badge badge-new">New</span>
+        </div>
+        <p class="listing-meta">Research & Development · Full-time · Tokyo</p>
+        <p class="listing-description">
+          A newly created role within our expanding R&D division. You will be responsible for the identification, cataloguing, and strategic deployment of chords. Current chord inventory stands at approximately four. We are looking to expand this to five.
+        </p>
+        <div class="listing-requirements">
+          <strong>Requirements</strong>
+          Familiarity with at least two chords. Strong opinions about which chord should come next. Must be comfortable presenting chord findings to senior leadership in a formal setting.
+        </div>
+      </div>
+
+      <!-- DEPUTY ASSISTANT SECRETARY -->
+      <div class="listing">
+        <div class="listing-header">
+          <span class="listing-title">Deputy Assistant Secretary for Spent Fuel & High-Level Waste Disposition</span>
+          <span class="listing-badge badge-urgent">Urgent</span>
+        </div>
+        <p class="listing-meta">Executive Leadership · Full-time · Tokyo</p>
+        <p class="listing-description">
+          Reporting to the Assistant Secretary for Nuclear Energy (currently vacant), you will oversee the strategic disposition of spent fuel and high-level waste across all Northwell Media operations. The nature of the waste is confidential at this stage. We ask that you do not inquire further.
+        </p>
+        <div class="listing-requirements">
+          <strong>Requirements</strong>
+          Previous experience as a Deputy Assistant Secretary preferred but not essential. Comfort with ambiguity, particularly regarding what the waste is and where it came from. Must sign an NDA prior to first interview.
+        </div>
+      </div>
+
+      <!-- ASSISTANT TO BASS TECH ASSISTANT -->
+      <div class="listing">
+        <div class="listing-header">
+          <span class="listing-title">Assistant to the Bass Tech Assistant</span>
+          <span class="listing-badge badge-open">Open</span>
+        </div>
+        <p class="listing-meta">Technical Staff · Full-time · Tokyo & Tour Dates</p>
+        <p class="listing-description">
+          You will report directly to the Assistant Bass Technician, who reports to Archibald Bass, who reports to nobody in particular. Your responsibilities include handing things to the Assistant Bass Technician so that he may hand them to Archibald. You will not touch the bass.
+        </p>
+        <div class="listing-requirements">
+          <strong>Requirements</strong>
+          No prior experience with bass guitars required or desired. Exceptional hand-to-hand object transfer skills. Must be comfortable in a role with a reporting line three levels deep into a single instrument.
+        </div>
+      </div>
+
+      <!-- LEAD VOCALIST / SONGWRITER -->
+      <div class="listing">
+        <div class="listing-header">
+          <span class="listing-title">Lead Vocalist / Songwriter</span>
+          <span class="listing-badge badge-open">Open</span>
+        </div>
+        <p class="listing-meta">Performing Artists · Full-time · Tokyo</p>
+        <p class="listing-description">
+          We are seeking a Lead Vocalist and Songwriter to join the organisation on a full-time basis. The successful candidate will be responsible for writing, recording, and performing original music. This role has been vacant for some time. We are not entirely sure why.
+        </p>
+        <div class="listing-requirements">
+          <strong>Requirements</strong>
+          Ability to sing. Ability to write songs. Based in or willing to relocate to Tokyo. Must not already be Mike Kitai.
+        </div>
+      </div>
+
+    </div>
+
+    <div class="apply-section">
+      <p>To apply, send your CV and a brief personal statement to</p>
+      <a class="apply-email" href="mailto:careers@mikekitai.com">careers@mikekitai.com</a>
+      <p class="apply-note">Please include the role title in the subject line. Applications submitted without a subject line will be reviewed last, or possibly not at all.</p>
+    </div>
+
+  </div>
+
+  <footer>&copy; 2026 Northwell Media</footer>
+
+  <script>
+    const hamburger = document.getElementById('hamburger');
+    const navMenu = document.getElementById('nav-menu');
+    hamburger.addEventListener('click', () => navMenu.classList.toggle('open'));
+    document.addEventListener('click', (e) => {
+      if (!hamburger.contains(e.target) && !navMenu.contains(e.target)) {
+        navMenu.classList.remove('open');
+      }
+    });
+  </script>
+
+</body>
+</html>
