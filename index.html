@@ -17,7 +17,7 @@
     gtag('js', new Date());
     gtag('config', 'G-2ZZ6YZRC86');
   </script>
-  <link rel="preload" as="image" href="Mike_Kitai_reduced.webp" />
+  <link rel="preload" as="image" href="Mike_Kitai_reduced.webp" fetchpriority="high" />
   <link rel="icon" href="MK_favicon.svg" type="image/svg+xml" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -355,7 +355,7 @@
 
   <!-- HERO -->
   <div class="hero">
-    <img class="hero-portrait" src="Mike_Kitai_reduced.webp" alt="Mike Kitai" id="hero-portrait" style="cursor:pointer;" />
+    <img class="hero-portrait" src="Mike_Kitai_reduced.webp" alt="Mike Kitai" id="hero-portrait" style="cursor:pointer;" fetchpriority="high" decoding="async" />
     <div class="hero-subtext">
       <p class="hero-quote" id="hero-quote"><span id="typed-quote"></span><span id="typed-cursor" style="display:inline-block;width:2px;height:0.9em;background:currentColor;margin-left:2px;vertical-align:text-bottom;animation:blink 0.8s step-end infinite;"></span></p>
       <div class="hero-socials">
@@ -415,7 +415,7 @@
   <div class="falling-divider" style="border-top: 1px solid rgba(200,191,168,0.1); margin: 0 32px; height: 1px;"></div>
   <section id="spotify">
     <p class="section-label">🎵 Latest Release</p>
-    <iframe class="spotify-embed" title="Latest Release" src="https://open.spotify.com/embed/track/2gRXvsvdjTAfIAO2V10SN1?utm_source=generator&theme=0" width="100%" height="152" frameborder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy" style="border-radius:4px;"></iframe>
+    <iframe class="spotify-embed" title="Latest Release" data-src="https://open.spotify.com/embed/track/2gRXvsvdjTAfIAO2V10SN1?utm_source=generator&theme=0" width="100%" height="152" frameborder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" style="border-radius:4px;"></iframe>
   </section>
 
   <!-- FOOTER -->
@@ -491,8 +491,12 @@
 
       physicsEls = [];
 
+      // ── Read all rects first (batch layout reads, avoid forced reflow) ──
+      const rects = Array.from(allEls).map(el => el.getBoundingClientRect());
+
+      // ── Then do all DOM writes ──
       allEls.forEach((el, i) => {
-        const rect = el.getBoundingClientRect();
+        const rect = rects[i];
         const clone = el.cloneNode(true);
         clone.style.cssText = `
           position: fixed;
@@ -569,6 +573,23 @@
     }
 
     }); // end window.addEventListener('load')
+
+    // ── DEFERRED SPOTIFY EMBED ──
+    (function() {
+      const iframe = document.querySelector('.spotify-embed[data-src]');
+      if (!iframe) return;
+      if ('IntersectionObserver' in window) {
+        new IntersectionObserver(function(entries, obs) {
+          if (entries[0].isIntersecting) {
+            iframe.src = iframe.dataset.src;
+            obs.disconnect();
+          }
+        }, { rootMargin: '300px' }).observe(iframe);
+      } else {
+        // fallback for old browsers
+        iframe.src = iframe.dataset.src;
+      }
+    })();
 
     function copyEmail(e) {
       e.preventDefault();
