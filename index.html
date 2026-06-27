@@ -577,7 +577,7 @@
       quoteClicks++;
       clearTimeout(quoteTimer);
       quoteTimer = setTimeout(() => quoteClicks = 0, 1000);
-      if (quoteClicks >= 3 && !gravityActive) {
+      if (quoteClicks >= 2 && !gravityActive) {
         quoteClicks = 0;
         triggerGravity();
       }
@@ -730,14 +730,14 @@
 
       // long press — 600ms hold
       trigger.addEventListener('mousedown', () => {
-        longPressTimer = setTimeout(toggleSDG, 600);
+        longPressTimer = setTimeout(toggleSDG, 300);
       });
       trigger.addEventListener('mouseup',   () => clearTimeout(longPressTimer));
       trigger.addEventListener('mouseleave',() => clearTimeout(longPressTimer));
 
       // touch support
       trigger.addEventListener('touchstart', (e) => {
-        longPressTimer = setTimeout(() => { toggleSDG(); e.preventDefault(); }, 600);
+        longPressTimer = setTimeout(() => { toggleSDG(); e.preventDefault(); }, 300);
       }, { passive: false });
       trigger.addEventListener('touchend',   () => clearTimeout(longPressTimer));
       trigger.addEventListener('touchmove',  () => clearTimeout(longPressTimer));
