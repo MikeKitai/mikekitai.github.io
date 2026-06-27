@@ -17,7 +17,7 @@
     gtag('js', new Date());
     gtag('config', 'G-2ZZ6YZRC86');
   </script>
-  <link rel="preload" as="image" href="Mike_Kitai_reduced.webp" fetchpriority="high" />
+  <link rel="preload" as="image" href="Mike_Kitai_reduced.webp" />
   <link rel="icon" href="MK_favicon.svg" type="image/svg+xml" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -166,7 +166,17 @@
       gap: 20px;
     }
 
+    /* ── PORTRAIT + BREATH RINGS ── */
+    .portrait-wrap {
+      position: relative;
+      width: 140px;
+      height: 140px;
+      flex-shrink: 0;
+    }
+
     .hero-portrait {
+      position: relative;
+      z-index: 2;
       width: 140px;
       height: 140px;
       border-radius: 50%;
@@ -174,6 +184,43 @@
       object-position: center 15%;
       filter: grayscale(15%);
       border: 1px solid rgba(200,191,168,0.2);
+    }
+
+    .breath-ring {
+      position: absolute;
+      top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+      width: 140px; height: 140px;
+      border-radius: 50%;
+      z-index: 1;
+      pointer-events: none;
+    }
+
+    .breath-ring:nth-child(1) {
+      background: radial-gradient(circle, rgba(167,139,250,0.32) 0%, rgba(139,92,246,0.12) 50%, transparent 72%);
+      animation: breath 4s ease-in-out infinite;
+      animation-delay: 0s;
+    }
+    .breath-ring:nth-child(2) {
+      background: radial-gradient(circle, rgba(192,132,252,0.2) 0%, rgba(167,139,250,0.07) 50%, transparent 72%);
+      animation: breath 4s ease-in-out infinite;
+      animation-delay: 0.5s;
+    }
+    .breath-ring:nth-child(3) {
+      background: radial-gradient(circle, rgba(103,232,249,0.14) 0%, rgba(103,232,249,0.04) 50%, transparent 72%);
+      animation: breath-slow 6s ease-in-out infinite;
+      animation-delay: 0s;
+    }
+
+    @keyframes breath {
+      0%   { transform: translate(-50%,-50%) scale(1);   opacity: 0.9; }
+      50%  { transform: translate(-50%,-50%) scale(2.4); opacity: 0.35; }
+      100% { transform: translate(-50%,-50%) scale(1);   opacity: 0.9; }
+    }
+    @keyframes breath-slow {
+      0%   { transform: translate(-50%,-50%) scale(1.2); opacity: 0.5; }
+      50%  { transform: translate(-50%,-50%) scale(3.2); opacity: 0.08; }
+      100% { transform: translate(-50%,-50%) scale(1.2); opacity: 0.5; }
     }
 
     .hero-eyebrow {
@@ -332,6 +379,38 @@
     @media (max-width: 620px) {
       .link-grid { grid-template-columns: 1fr 1fr; }
     }
+
+    /* ── SDG MODE ── */
+    body {
+      transition: filter 1.2s ease;
+    }
+    .gradient-bg {
+      transition: filter 1.2s ease;
+    }
+    body.sdg-mode {
+      filter: grayscale(100%);
+    }
+    .gradient-bg.sdg-mode {
+      filter: grayscale(100%);
+    }
+
+    .sdg-hint {
+      position: fixed;
+      bottom: 72px;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 10px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--accent);
+      opacity: 0;
+      transition: opacity 0.8s ease;
+      pointer-events: none;
+      z-index: 999;
+      white-space: nowrap;
+    }
+    .sdg-hint.visible { opacity: 0.6; }
+
   </style>
 </head>
 <body>
@@ -355,7 +434,12 @@
 
   <!-- HERO -->
   <div class="hero">
-    <img class="hero-portrait" src="Mike_Kitai_reduced.webp" alt="Mike Kitai" id="hero-portrait" style="cursor:pointer;" fetchpriority="high" decoding="async" />
+    <div class="portrait-wrap">
+      <div class="breath-ring"></div>
+      <div class="breath-ring"></div>
+      <div class="breath-ring"></div>
+      <img class="hero-portrait" src="Mike_Kitai_reduced.webp" alt="Mike Kitai" id="hero-portrait" style="cursor:pointer;" fetchpriority="high" decoding="async" />
+    </div>
     <div class="hero-subtext">
       <p class="hero-quote" id="hero-quote"><span id="typed-quote"></span><span id="typed-cursor" style="display:inline-block;width:2px;height:0.9em;background:currentColor;margin-left:2px;vertical-align:text-bottom;animation:blink 0.8s step-end infinite;"></span></p>
       <div class="hero-socials">
@@ -415,13 +499,15 @@
   <div class="falling-divider" style="border-top: 1px solid rgba(200,191,168,0.1); margin: 0 32px; height: 1px;"></div>
   <section id="spotify">
     <p class="section-label">🎵 Latest Release</p>
-    <iframe class="spotify-embed" title="Latest Release" data-src="https://open.spotify.com/embed/track/2gRXvsvdjTAfIAO2V10SN1?utm_source=generator&theme=0" width="100%" height="152" frameborder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" style="border-radius:4px;"></iframe>
+    <iframe class="spotify-embed" title="Latest Release" src="https://open.spotify.com/embed/track/2gRXvsvdjTAfIAO2V10SN1?utm_source=generator&theme=0" width="100%" height="152" frameborder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy" style="border-radius:4px;"></iframe>
   </section>
 
   <!-- FOOTER -->
   <footer>
-    &copy; 2026 Northwell Media
+    &copy; 2026 <span id="northwell-media">Northwell Media</span>
   </footer>
+
+  <div class="sdg-hint" id="sdg-hint"></div>
 
   <script>
     const hamburger = document.getElementById('hamburger');
@@ -437,16 +523,30 @@
     window.addEventListener('load', () => {
 
     const speeds = [18, 5, 2, 0.5, 0.1];
+    // breath and breath-slow durations scaled proportionally to gradient speeds
+    // base: gradient=18s → breath=4s, breath-slow=6s
+    const breathSpeeds     = speeds.map(s => +(s * (4 / 18)).toFixed(3));
+    const breathSlowSpeeds = speeds.map(s => +(s * (6 / 18)).toFixed(3));
+
     let speedIndex = 0;
-    const gradientBg = document.querySelector('.gradient-bg');
+    const gradientBg   = document.querySelector('.gradient-bg');
+    const breathRings  = document.querySelectorAll('.breath-ring');
 
     function portraitTap() {
       speedIndex = (speedIndex + 1) % speeds.length;
-      const speed = speeds[speedIndex];
-      gradientBg.style.animationDuration = speed + 's';
-      if (speedIndex === 0) {
-        gradientBg.style.animationDuration = '';
-      }
+      const speed         = speeds[speedIndex];
+      const breathDur     = breathSpeeds[speedIndex];
+      const breathSlowDur = breathSlowSpeeds[speedIndex];
+
+      // update gradient
+      gradientBg.style.animationDuration = speedIndex === 0 ? '' : speed + 's';
+
+      // rings 1 & 2 use breath, ring 3 uses breath-slow
+      breathRings.forEach((ring, i) => {
+        ring.style.animationDuration = i < 2
+          ? breathDur + 's'
+          : breathSlowDur + 's';
+      });
     }
     document.getElementById('hero-portrait').addEventListener('click', portraitTap);
     document.getElementById('hero-quote').addEventListener('click', quoteClick);
@@ -491,12 +591,8 @@
 
       physicsEls = [];
 
-      // ── Read all rects first (batch layout reads, avoid forced reflow) ──
-      const rects = Array.from(allEls).map(el => el.getBoundingClientRect());
-
-      // ── Then do all DOM writes ──
       allEls.forEach((el, i) => {
-        const rect = rects[i];
+        const rect = el.getBoundingClientRect();
         const clone = el.cloneNode(true);
         clone.style.cssText = `
           position: fixed;
@@ -574,23 +670,6 @@
 
     }); // end window.addEventListener('load')
 
-    // ── DEFERRED SPOTIFY EMBED ──
-    (function() {
-      const iframe = document.querySelector('.spotify-embed[data-src]');
-      if (!iframe) return;
-      if ('IntersectionObserver' in window) {
-        new IntersectionObserver(function(entries, obs) {
-          if (entries[0].isIntersecting) {
-            iframe.src = iframe.dataset.src;
-            obs.disconnect();
-          }
-        }, { rootMargin: '300px' }).observe(iframe);
-      } else {
-        // fallback for old browsers
-        iframe.src = iframe.dataset.src;
-      }
-    })();
-
     function copyEmail(e) {
       e.preventDefault();
       try {
@@ -625,6 +704,50 @@
         }, 1500);
       }, 300);
     }
+
+    // ── SDG MODE EASTER EGG ──
+    (function () {
+      const trigger    = document.getElementById('northwell-media');
+      const gradientBg = document.querySelector('.gradient-bg');
+      const hint       = document.getElementById('sdg-hint');
+      let longPressTimer;
+      let sdgActive = false;
+      let hintTimer;
+
+      function showHint(text) {
+        clearTimeout(hintTimer);
+        hint.textContent = text;
+        hint.classList.add('visible');
+        hintTimer = setTimeout(() => hint.classList.remove('visible'), 2800);
+      }
+
+      function toggleSDG() {
+        sdgActive = !sdgActive;
+        document.body.classList.toggle('sdg-mode', sdgActive);
+        gradientBg.classList.toggle('sdg-mode', sdgActive);
+        showHint(sdgActive ? 'SDG mode activated' : 'SDG mode deactivated');
+      }
+
+      // long press — 600ms hold
+      trigger.addEventListener('mousedown', () => {
+        longPressTimer = setTimeout(toggleSDG, 600);
+      });
+      trigger.addEventListener('mouseup',   () => clearTimeout(longPressTimer));
+      trigger.addEventListener('mouseleave',() => clearTimeout(longPressTimer));
+
+      // touch support
+      trigger.addEventListener('touchstart', (e) => {
+        longPressTimer = setTimeout(() => { toggleSDG(); e.preventDefault(); }, 600);
+      }, { passive: false });
+      trigger.addEventListener('touchend',   () => clearTimeout(longPressTimer));
+      trigger.addEventListener('touchmove',  () => clearTimeout(longPressTimer));
+
+      // prevent accidental text selection on long press
+      trigger.style.userSelect = 'none';
+      trigger.style.webkitUserSelect = 'none';
+      trigger.style.cursor = 'default';
+    })();
+
   </script>
 
 </body>
