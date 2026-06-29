@@ -95,6 +95,10 @@
       text-align: center;
       grid-column: 2;
       line-height: 1;
+      text-decoration: none;
+      display: inline-block;
+      padding: 8px 16px;
+      margin: 0 auto;
     }
 
     .hamburger {
@@ -590,6 +594,9 @@
     const portraitInner = document.getElementById('portrait-inner');
     let isFlipping = false;
 
+    let gravityActive = false;
+    let physicsEls = [];
+
     function portraitTap() {
       speedIndex = (speedIndex + 1) % speeds.length;
       const speed         = speeds[speedIndex];
@@ -615,6 +622,11 @@
           isFlipping = false;
         }, { once: true });
       }
+
+      // gravity triggers when speed cycles back to default (index 0)
+      if (speedIndex === 0 && !gravityActive) {
+        setTimeout(triggerGravity, 400);
+      }
     }
     document.querySelector('.portrait-wrap').addEventListener('click', portraitTap);
     document.getElementById('hero-quote').addEventListener('click', quoteClick);
@@ -635,19 +647,16 @@
     }
     setTimeout(typeQuote, 400);
 
-    // ── EASTER EGG ──
+    // ── QUOTE DOUBLE TAP (kept for potential future use, gravity removed) ──
     let quoteClicks = 0;
     let quoteTimer;
-    let gravityActive = false;
-    let physicsEls = [];
 
     function quoteClick() {
       quoteClicks++;
       clearTimeout(quoteTimer);
       quoteTimer = setTimeout(() => quoteClicks = 0, 1000);
-      if (quoteClicks >= 2 && !gravityActive) {
+      if (quoteClicks >= 2) {
         quoteClicks = 0;
-        triggerGravity();
       }
     }
 
