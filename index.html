@@ -424,13 +424,13 @@
     }
 
     /* ── SDG MODE ── */
-    body {
+    .page-filter-wrap {
       transition: filter 1.2s ease;
     }
     .gradient-bg {
       transition: filter 1.2s ease;
     }
-    body.sdg-mode {
+    .page-filter-wrap.sdg-mode {
       filter: grayscale(100%);
     }
     .gradient-bg.sdg-mode {
@@ -460,9 +460,12 @@
 
   <div class="gradient-bg"></div>
 
+  <div class="page-filter-wrap" id="page-filter-wrap">
+
   <!-- NAVBAR -->
   <nav class="navbar">
-    <span class="navbar-name">Mike Kitai</span>
+    <div></div>
+    <a class="navbar-name" href="index.html">Mike Kitai</a>
     <button class="hamburger" id="hamburger" aria-label="Menu">
       <span></span>
       <span></span>
@@ -551,6 +554,8 @@
     <p class="section-label">🎵 Latest Release</p>
     <iframe class="spotify-embed" title="Latest Release" src="https://open.spotify.com/embed/track/2gRXvsvdjTAfIAO2V10SN1?utm_source=generator&theme=0" width="100%" height="152" frameborder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy" style="border-radius:4px;"></iframe>
   </section>
+
+  </div><!-- end page-filter-wrap -->
 
   <!-- FOOTER -->
   <footer>
@@ -649,19 +654,22 @@
     function triggerGravity() {
       gravityActive = true;
       const allEls = document.querySelectorAll(
-        '.hero-portrait, .hero-eyebrow, .hero-name, #hero-quote, .hero-socials, #email-link, .section-label, .platform-link, .spotify-embed, .falling-divider, footer'
+        '.portrait-wrap, .hero-eyebrow, .hero-name, #hero-quote, .hero-socials, #email-link, .section-label, .platform-link, .spotify-embed, .falling-divider, footer'
       );
 
       physicsEls = [];
 
+      const rects = Array.from(allEls).map(el => el.getBoundingClientRect());
+
       allEls.forEach((el, i) => {
-        const rect = el.getBoundingClientRect();
+        const rect = rects[i];
         const clone = el.cloneNode(true);
         clone.style.cssText = `
           position: fixed;
           left: ${rect.left}px;
           top: ${rect.top}px;
           width: ${rect.width}px;
+          height: ${rect.height}px;
           margin: 0;
           z-index: 9999;
           pointer-events: none;
@@ -720,7 +728,7 @@
             setTimeout(() => {
               physicsEls.forEach(p => p.el.remove());
               document.querySelectorAll(
-                '.hero-portrait, .hero-eyebrow, .hero-name, #hero-quote, .hero-socials, #email-link, .section-label, .platform-link, .spotify-embed, .falling-divider, footer'
+                '.portrait-wrap, .hero-eyebrow, .hero-name, #hero-quote, .hero-socials, #email-link, .section-label, .platform-link, .spotify-embed, .falling-divider, footer'
               ).forEach(el => el.style.visibility = '');
               gravityActive = false;
             }, 800);
@@ -772,6 +780,7 @@
     (function () {
       const trigger    = document.getElementById('northwell-media');
       const gradientBg = document.querySelector('.gradient-bg');
+      const pageWrap   = document.getElementById('page-filter-wrap');
       const hint       = document.getElementById('sdg-hint');
       let longPressTimer;
       let sdgActive = false;
@@ -786,7 +795,7 @@
 
       function toggleSDG() {
         sdgActive = !sdgActive;
-        document.body.classList.toggle('sdg-mode', sdgActive);
+        pageWrap.classList.toggle('sdg-mode', sdgActive);
         gradientBg.classList.toggle('sdg-mode', sdgActive);
         showHint(sdgActive ? 'SDG mode activated' : 'SDG mode deactivated');
       }
