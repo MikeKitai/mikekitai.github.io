@@ -4,6 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Mike Kitai — Careers</title>
+  <meta name="description" content="Open positions at Northwell Media — the organisation behind Tokyo-based singer-songwriter Mike Kitai." />
   <!-- Google tag (gtag.js) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-2ZZ6YZRC86"></script>
   <script>
@@ -18,133 +19,9 @@
   <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;700&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300&family=DM+Serif+Display&family=Inter:wght@300;400&display=swap" />
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;700&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300&family=DM+Serif+Display&family=Inter:wght@300;400&display=swap" media="print" onload="this.media='all'" />
   <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;700&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300&family=DM+Serif+Display&family=Inter:wght@300;400&display=swap" /></noscript>
+  <link rel="stylesheet" href="style.css" />
+  <script src="site.js" defer></script>
   <style>
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
-    :root {
-      --white: #f7f6f3;
-      --mid: #7a6d8a;
-      --accent: #c8bfa8;
-    }
-
-    html { scroll-behavior: smooth; }
-
-    body {
-      color: var(--white);
-      font-family: 'Inter', sans-serif;
-      font-weight: 300;
-      font-size: 15px;
-      line-height: 1.7;
-      overflow-x: hidden;
-    }
-
-    .gradient-bg {
-      position: fixed;
-      inset: 0;
-      z-index: -1;
-      background: linear-gradient(135deg, #2d0f52, #0d2a6e, #4a0f5e, #0a3a5a, #5e0f3a, #0f4a3a, #3a0f6e, #2d0f52);
-      background-size: 400% 400%;
-      animation: gradientShift 18s ease infinite;
-    }
-
-    @keyframes gradientShift {
-      0%   { background-position: 0% 50%; }
-      25%  { background-position: 100% 0%; }
-      50%  { background-position: 100% 100%; }
-      75%  { background-position: 0% 100%; }
-      100% { background-position: 0% 50%; }
-    }
-
-    /* ── NAVBAR ── */
-    .navbar {
-      position: fixed;
-      top: 0; left: 0; right: 0;
-      z-index: 100;
-      display: grid;
-      grid-template-columns: 36px 1fr 36px;
-      align-items: center;
-      padding: 0 32px;
-      height: 68px;
-      background: rgba(10, 5, 20, 0.85);
-      backdrop-filter: blur(12px);
-      -webkit-backdrop-filter: blur(12px);
-      border-bottom: 1px solid rgba(200,191,168,0.1);
-    }
-
-    .navbar-name {
-      font-family: 'DM Serif Display', serif;
-      font-weight: 400;
-      font-size: clamp(24px, 4vw, 42px);
-      letter-spacing: -0.01em;
-      color: var(--white);
-      white-space: nowrap;
-      text-align: center;
-      grid-column: 2;
-      line-height: 1;
-      text-decoration: none;
-      display: inline-block;
-      padding: 8px 16px;
-      margin: 0 auto;
-    }
-
-    .hamburger {
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      gap: 5px;
-      width: 36px;
-      height: 36px;
-      background: none;
-      border: none;
-      cursor: pointer;
-      padding: 4px;
-      grid-column: 3;
-    }
-
-    .hamburger span {
-      display: block;
-      width: 22px;
-      height: 1.5px;
-      background: var(--white);
-      opacity: 0.8;
-      transition: opacity 0.2s;
-    }
-
-    .hamburger:hover span { opacity: 1; }
-
-    .nav-menu {
-      display: none;
-      position: absolute;
-      top: 68px;
-      right: 0;
-      min-width: 200px;
-      background: rgba(10, 5, 20, 0.95);
-      backdrop-filter: blur(12px);
-      -webkit-backdrop-filter: blur(12px);
-      border: 1px solid rgba(200,191,168,0.1);
-      border-top: none;
-      padding: 8px 0;
-    }
-
-    .nav-menu.open { display: block; }
-
-    .nav-link {
-      display: block;
-      padding: 12px 24px;
-      color: #f7f6f3;
-      text-decoration: none;
-      font-size: 13px;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      opacity: 0.7;
-      transition: opacity 0.2s, background 0.2s;
-    }
-
-    .nav-link:hover {
-      opacity: 1;
-      background: rgba(200,191,168,0.06);
-    }
-
     /* ── PAGE ── */
     .page-wrap {
       max-width: 760px;
@@ -279,7 +156,7 @@
     .listing-requirements {
       font-size: 12px;
       color: var(--mid);
-      border-top: 1px solid rgba(200,191,168,0.1);
+      border-top: 1px solid var(--line);
       padding-top: 14px;
       line-height: 1.8;
     }
@@ -296,7 +173,7 @@
 
     /* ── APPLY ── */
     .apply-section {
-      border-top: 1px solid rgba(200,191,168,0.1);
+      border-top: 1px solid var(--line);
       padding-top: 32px;
       text-align: center;
     }
@@ -320,21 +197,13 @@
 
     .apply-email:hover { border-color: var(--accent); }
 
+    .apply-email span { transition: opacity 0.3s; }
+
     .apply-note {
       font-size: 11px;
       color: var(--mid);
       margin-top: 12px;
       font-style: italic;
-    }
-
-    footer {
-      border-top: 1px solid rgba(200,191,168,0.1);
-      padding: 28px 32px;
-      text-align: center;
-      font-size: 11px;
-      color: var(--mid);
-      letter-spacing: 0.08em;
-      margin-top: 0;
     }
   </style>
 </head>
@@ -345,7 +214,7 @@
   <nav class="navbar">
     <div></div>
     <a class="navbar-name" href="index.html">Mike Kitai</a>
-    <button class="hamburger" id="hamburger" aria-label="Menu">
+    <button class="hamburger" id="hamburger" aria-label="Menu" aria-controls="nav-menu" aria-expanded="false">
       <span></span><span></span><span></span>
     </button>
     <div class="nav-menu" id="nav-menu">
@@ -437,53 +306,13 @@
 
     <div class="apply-section">
       <p>To apply, send your CV and a brief personal statement to</p>
-      <a class="apply-email" href="mailto:careers@mikekitai.com" onclick="copyCareerEmail(event)"><span id="careers-email-text" style="transition: opacity 0.3s;">careers@mikekitai.com</span></a>
+      <a class="apply-email" href="mailto:careers@mikekitai.com" onclick="copyEmail(event, 'careers@mikekitai.com', 'careers-email-text')"><span id="careers-email-text">careers@mikekitai.com</span></a>
       <p class="apply-note">Please include the role title in the subject line. Applications submitted without a subject line will be reviewed last, or possibly not at all.</p>
     </div>
 
   </div>
 
   <footer>&copy; 2026 Northwell Media</footer>
-
-  <script>
-    const hamburger = document.getElementById('hamburger');
-    const navMenu = document.getElementById('nav-menu');
-    hamburger.addEventListener('click', () => navMenu.classList.toggle('open'));
-    document.addEventListener('click', (e) => {
-      if (!hamburger.contains(e.target) && !navMenu.contains(e.target)) {
-        navMenu.classList.remove('open');
-      }
-    });
-
-    function copyCareerEmail(e) {
-      e.preventDefault();
-      try {
-        if (navigator.clipboard && navigator.clipboard.writeText) {
-          navigator.clipboard.writeText('careers@mikekitai.com').then(() => {
-            const span = document.getElementById('careers-email-text');
-            span.style.opacity = '0';
-            setTimeout(() => {
-              span.textContent = 'Copied!';
-              span.style.opacity = '1';
-              setTimeout(() => {
-                span.style.opacity = '0';
-                setTimeout(() => {
-                  span.textContent = 'careers@mikekitai.com';
-                  span.style.opacity = '1';
-                }, 300);
-              }, 1500);
-            }, 300);
-          }).catch(() => {
-            window.location.href = 'mailto:careers@mikekitai.com';
-          });
-        } else {
-          window.location.href = 'mailto:careers@mikekitai.com';
-        }
-      } catch(err) {
-        window.location.href = 'mailto:careers@mikekitai.com';
-      }
-    }
-  </script>
 
 </body>
 </html>

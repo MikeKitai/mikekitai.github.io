@@ -4,6 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Mike Kitai — Our Team</title>
+  <meta name="description" content="Meet the extensive team at Northwell Media supporting Tokyo-based singer-songwriter Mike Kitai." />
   <!-- Google tag (gtag.js) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-2ZZ6YZRC86"></script>
   <script>
@@ -18,133 +19,9 @@
   <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;700&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300&family=DM+Serif+Display&family=Inter:wght@300;400&display=swap" />
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;700&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300&family=DM+Serif+Display&family=Inter:wght@300;400&display=swap" media="print" onload="this.media='all'" />
   <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;700&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300&family=DM+Serif+Display&family=Inter:wght@300;400&display=swap" /></noscript>
+  <link rel="stylesheet" href="style.css" />
+  <script src="site.js" defer></script>
   <style>
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
-    :root {
-      --white: #f7f6f3;
-      --mid: #7a6d8a;
-      --accent: #c8bfa8;
-    }
-
-    html { scroll-behavior: smooth; }
-
-    body {
-      color: var(--white);
-      font-family: 'Inter', sans-serif;
-      font-weight: 300;
-      font-size: 15px;
-      line-height: 1.7;
-      overflow-x: hidden;
-    }
-
-    .gradient-bg {
-      position: fixed;
-      inset: 0;
-      z-index: -1;
-      background: linear-gradient(135deg, #2d0f52, #0d2a6e, #4a0f5e, #0a3a5a, #5e0f3a, #0f4a3a, #3a0f6e, #0d2a6e, #2d0f52);
-      background-size: 400% 400%;
-      animation: gradientShift 18s ease infinite;
-    }
-
-    @keyframes gradientShift {
-      0%   { background-position: 0% 50%; }
-      25%  { background-position: 100% 0%; }
-      50%  { background-position: 100% 100%; }
-      75%  { background-position: 0% 100%; }
-      100% { background-position: 0% 50%; }
-    }
-
-    /* ── NAVBAR ── */
-    .navbar {
-      position: fixed;
-      top: 0; left: 0; right: 0;
-      z-index: 100;
-      display: grid;
-      grid-template-columns: 36px 1fr 36px;
-      align-items: center;
-      padding: 0 32px;
-      height: 68px;
-      background: rgba(10, 5, 20, 0.85);
-      backdrop-filter: blur(12px);
-      -webkit-backdrop-filter: blur(12px);
-      border-bottom: 1px solid rgba(200,191,168,0.1);
-    }
-
-    .navbar-name {
-      font-family: 'DM Serif Display', serif;
-      font-weight: 400;
-      font-size: clamp(24px, 4vw, 42px);
-      letter-spacing: -0.01em;
-      color: var(--white);
-      white-space: nowrap;
-      text-align: center;
-      grid-column: 2;
-      line-height: 1;
-      text-decoration: none;
-      display: inline-block;
-      padding: 8px 16px;
-      margin: 0 auto;
-    }
-
-    .hamburger {
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      gap: 5px;
-      width: 36px;
-      height: 36px;
-      background: none;
-      border: none;
-      cursor: pointer;
-      padding: 4px;
-      grid-column: 3;
-    }
-
-    .hamburger span {
-      display: block;
-      width: 22px;
-      height: 1.5px;
-      background: var(--white);
-      opacity: 0.8;
-      transition: opacity 0.2s;
-    }
-
-    .hamburger:hover span { opacity: 1; }
-
-    .nav-menu {
-      display: none;
-      position: absolute;
-      top: 68px;
-      right: 0;
-      min-width: 200px;
-      background: rgba(10, 5, 20, 0.95);
-      backdrop-filter: blur(12px);
-      -webkit-backdrop-filter: blur(12px);
-      border: 1px solid rgba(200,191,168,0.1);
-      border-top: none;
-      padding: 8px 0;
-    }
-
-    .nav-menu.open { display: block; }
-
-    .nav-link {
-      display: block;
-      padding: 12px 24px;
-      color: #f7f6f3;
-      text-decoration: none;
-      font-size: 13px;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      opacity: 0.7;
-      transition: opacity 0.2s, background 0.2s;
-    }
-
-    .nav-link:hover {
-      opacity: 1;
-      background: rgba(200,191,168,0.06);
-    }
-
     /* ── PAGE ── */
     .page-header {
       max-width: 860px;
@@ -153,7 +30,7 @@
       text-align: center;
     }
 
-    .page-header h2 {
+    .page-header h1 {
       font-family: 'Cormorant Garamond', serif;
       font-weight: 300;
       font-size: clamp(36px, 5vw, 56px);
@@ -182,18 +59,10 @@
       color: var(--mid);
       margin-bottom: 24px;
       padding-bottom: 10px;
-      border-bottom: 1px solid rgba(200,191,168,0.1);
+      border-bottom: 1px solid var(--line);
     }
 
     .team-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
-      gap: 24px;
-      margin-bottom: 8px;
-      justify-items: center;
-    }
-
-    .team-grid.centered {
       display: flex;
       flex-wrap: wrap;
       justify-content: center;
@@ -201,7 +70,7 @@
       margin-bottom: 8px;
     }
 
-    .team-grid.centered .team-card {
+    .team-grid .team-card {
       width: 160px;
       flex-shrink: 0;
     }
@@ -239,20 +108,10 @@
       line-height: 1.4;
     }
 
-    footer {
-      border-top: 1px solid rgba(200,191,168,0.1);
-      padding: 28px 32px;
-      text-align: center;
-      font-size: 11px;
-      color: var(--mid);
-      letter-spacing: 0.08em;
-      margin-top: 48px;
-    }
+    footer { margin-top: 48px; }
 
     @media (max-width: 480px) {
-      .team-grid.centered .team-card {
-        width: 140px;
-      }
+      .team-grid .team-card { width: 140px; }
     }
   </style>
 </head>
@@ -263,7 +122,7 @@
   <nav class="navbar">
     <div></div>
     <a class="navbar-name" href="index.html">Mike Kitai</a>
-    <button class="hamburger" id="hamburger" aria-label="Menu">
+    <button class="hamburger" id="hamburger" aria-label="Menu" aria-controls="nav-menu" aria-expanded="false">
       <span></span><span></span><span></span>
     </button>
     <div class="nav-menu" id="nav-menu">
@@ -274,36 +133,36 @@
   </nav>
 
   <div class="page-header">
-    <h2>Our Team</h2>
+    <h1>Our Team</h1>
     <p>The people behind the music</p>
   </div>
 
   <!-- EXECUTIVE LEADERSHIP -->
   <div class="team-section">
     <p class="team-section-title">Executive Leadership</p>
-    <div class="team-grid centered">
+    <div class="team-grid">
       <div class="team-card">
-        <img src="band manager.JPG" alt="Band Manager" />
+        <img src="band manager.JPG" alt="Gerald Hutchinson" width="120" height="120" loading="lazy" decoding="async" />
         <span class="name">Gerald Hutchinson</span>
         <span class="role">Chief Executive Officer</span>
       </div>
       <div class="team-card">
-        <img src="executive branch manager.jpg" alt="Executive" />
+        <img src="executive branch manager.jpg" alt="Montgomery Briggs" width="120" height="120" loading="lazy" decoding="async" />
         <span class="name">Montgomery Briggs</span>
         <span class="role">Chief Operating Officer</span>
       </div>
       <div class="team-card">
-        <img src="chief financial officer.PNG" alt="CFO" />
+        <img src="chief financial officer.PNG" alt="Patricia Wentworth" width="120" height="120" loading="lazy" decoding="async" />
         <span class="name">Patricia Wentworth</span>
         <span class="role">Chief Financial Officer</span>
       </div>
       <div class="team-card">
-        <img src="chief DEI officer.JPG" alt="DEI Officer" />
+        <img src="chief DEI officer.JPG" alt="Cornelius Fairbanks" width="120" height="120" loading="lazy" decoding="async" />
         <span class="name">Cornelius Fairbanks</span>
         <span class="role">Chief Diversity, Equity & Inclusion Officer</span>
       </div>
       <div class="team-card">
-        <img src="personalassistanttoCEO.JPG" alt="Personal Assistant" />
+        <img src="personalassistanttoCEO.JPG" alt="Pippa Scurry" width="120" height="120" loading="lazy" decoding="async" />
         <span class="name">Pippa Scurry</span>
         <span class="role">Personal Assistant to the CEO</span>
       </div>
@@ -313,49 +172,49 @@
   <!-- OPERATIONS -->
   <div class="team-section">
     <p class="team-section-title">Operations & Strategy</p>
-    <div class="team-grid centered">
+    <div class="team-grid">
       <div class="team-card">
-        <img src="head of operations.JPG" alt="Head of Operations" />
+        <img src="head of operations.JPG" alt="Reginald Forsythe" width="120" height="120" loading="lazy" decoding="async" />
         <span class="name">Reginald Forsythe</span>
         <span class="role">Vice President, Operations</span>
       </div>
       <div class="team-card">
-        <img src="aquisitions.JPG" alt="Acquisitions" />
+        <img src="aquisitions.JPG" alt="Barnaby Whitlock" width="120" height="120" loading="lazy" decoding="async" />
         <span class="name">Barnaby Whitlock</span>
         <span class="role">Director of Strategic Acquisitions</span>
       </div>
       <div class="team-card">
-        <img src="head of human resources.JPG" alt="HR" />
+        <img src="head of human resources.JPG" alt="Millicent Hogg" width="120" height="120" loading="lazy" decoding="async" />
         <span class="name">Millicent Hogg</span>
         <span class="role">Vice President, Human Resources</span>
       </div>
       <div class="team-card">
-        <img src="photography and social media.JPG" alt="Photography" />
+        <img src="photography and social media.JPG" alt="Sebastiano Lentz" width="120" height="120" loading="lazy" decoding="async" />
         <span class="name">Sebastiano Lentz</span>
         <span class="role">Director of Photography & Social Media</span>
       </div>
       <div class="team-card">
-        <img src="socialmediamanager.JPG" alt="Social Media Manager" />
+        <img src="socialmediamanager.JPG" alt="Gerald Quacksworth" width="120" height="120" loading="lazy" decoding="async" />
         <span class="name">Gerald Quacksworth</span>
         <span class="role">Social Media Manager</span>
       </div>
       <div class="team-card">
-        <img src="legalcounsel.JPG" alt="Legal Counsel" />
+        <img src="legalcounsel.JPG" alt="Reginald Pelican" width="120" height="120" loading="lazy" decoding="async" />
         <span class="name">Reginald Pelican</span>
         <span class="role">Senior Legal Counsel</span>
       </div>
       <div class="team-card">
-        <img src="ITsupport.JPG" alt="IT Support" />
+        <img src="ITsupport.JPG" alt="Victor Whiskers" width="120" height="120" loading="lazy" decoding="async" />
         <span class="name">Victor Whiskers</span>
         <span class="role">Head of IT & Technical Infrastructure</span>
       </div>
       <div class="team-card">
-        <img src="PR manager.PNG" alt="PR Manager" />
+        <img src="PR manager.PNG" alt="Gerald Poutsworth" width="120" height="120" loading="lazy" decoding="async" />
         <span class="name">Gerald Poutsworth</span>
         <span class="role">Director of Public Relations</span>
       </div>
       <div class="team-card">
-        <img src="booking agent.JPG" alt="Booking Agent" />
+        <img src="booking agent.JPG" alt="Vincent Mask" width="120" height="120" loading="lazy" decoding="async" />
         <span class="name">Vincent Mask</span>
         <span class="role">Senior Booking Agent</span>
       </div>
@@ -365,24 +224,24 @@
   <!-- CATERING -->
   <div class="team-section">
     <p class="team-section-title">Hospitality & Catering</p>
-    <div class="team-grid centered">
+    <div class="team-grid">
       <div class="team-card">
-        <img src="catering.PNG" alt="Catering" />
+        <img src="catering.PNG" alt="Bartholomew Chew" width="120" height="120" loading="lazy" decoding="async" />
         <span class="name">Bartholomew Chew</span>
         <span class="role">Head of Catering & Artist Hospitality</span>
       </div>
       <div class="team-card">
-        <img src="chef.JPG" alt="Chef" />
+        <img src="chef.JPG" alt="Antonio Grimaldi" width="120" height="120" loading="lazy" decoding="async" />
         <span class="name">Antonio Grimaldi</span>
         <span class="role">Executive Chef</span>
       </div>
       <div class="team-card">
-        <img src="sous chef.JPG" alt="Sous Chef" />
+        <img src="sous chef.JPG" alt="Reginald Washing" width="120" height="120" loading="lazy" decoding="async" />
         <span class="name">Reginald Washing</span>
         <span class="role">Sous Chef</span>
       </div>
       <div class="team-card">
-        <img src="food tester.JPG" alt="Food Tester" />
+        <img src="food tester.JPG" alt="Cornelius Nibbles" width="120" height="120" loading="lazy" decoding="async" />
         <span class="name">Cornelius Nibbles</span>
         <span class="role">Senior Food Quality Analyst</span>
       </div>
@@ -392,79 +251,76 @@
   <!-- SECURITY -->
   <div class="team-section">
     <p class="team-section-title">Security & Risk Management</p>
-    <div class="team-grid centered">
+    <div class="team-grid">
       <div class="team-card">
-        <img src="head of security.png" alt="Head of Security" />
+        <img src="head of security.png" alt="Douglas Ramsgate" width="120" height="120" loading="lazy" decoding="async" />
         <span class="name">Douglas Ramsgate</span>
         <span class="role">Chief Security Officer</span>
       </div>
       <div class="team-card">
-        <img src="backstage security manager.JPG" alt="Backstage Security" />
+        <img src="backstage security manager.JPG" alt="Terrence Bullock" width="120" height="120" loading="lazy" decoding="async" />
         <span class="name">Terrence Bullock</span>
         <span class="role">Senior Security Manager</span>
       </div>
       <div class="team-card">
-        <img src="security1.JPG" alt="Security" />
+        <img src="security1.JPG" alt="Franklin Perch" width="120" height="120" loading="lazy" decoding="async" />
         <span class="name">Franklin Perch</span>
         <span class="role">Security Operative, Ground Level</span>
       </div>
       <div class="team-card">
-        <img src="security2.JPG" alt="Security" />
+        <img src="security2.JPG" alt="Clive Rooston" width="120" height="120" loading="lazy" decoding="async" />
         <span class="name">Clive Rooston</span>
         <span class="role">Specialist Surveillance Officer</span>
       </div>
       <div class="team-card">
-        <img src="security 3.JPG" alt="Security" />
+        <img src="security 3.JPG" alt="Nigel Covert" width="120" height="120" loading="lazy" decoding="async" />
         <span class="name">Nigel Covert</span>
         <span class="role">Security Operative, Elevated Position</span>
       </div>
     </div>
   </div>
 
-    </div>
-  </div>
-
   <!-- TOURING -->
   <div class="team-section">
     <p class="team-section-title">Live & Touring</p>
-    <div class="team-grid centered">
+    <div class="team-grid">
       <div class="team-card">
-        <img src="tourmanager.JPG" alt="Tour Manager" />
+        <img src="tourmanager.JPG" alt="Daphne Puffington" width="120" height="120" loading="lazy" decoding="async" />
         <span class="name">Daphne Puffington</span>
         <span class="role">Tour Manager</span>
       </div>
       <div class="team-card">
-        <img src="tour bus driver.JPG" alt="Tour Bus Driver" />
+        <img src="tour bus driver.JPG" alt="Humphrey Calloway" width="120" height="120" loading="lazy" decoding="async" />
         <span class="name">Humphrey Calloway</span>
         <span class="role">Director of Ground Transportation</span>
       </div>
       <div class="team-card">
-        <img src="live mix engineer.JPG" alt="Live Mix Engineer" />
+        <img src="live mix engineer.JPG" alt="Desmond Fitch" width="120" height="120" loading="lazy" decoding="async" />
         <span class="name">Desmond Fitch</span>
         <span class="role">Senior Live Audio Engineer</span>
       </div>
       <div class="team-card">
-        <img src="pyrotechnics.JPG" alt="Pyrotechnics" />
+        <img src="pyrotechnics.JPG" alt="Ignatius Blaze" width="120" height="120" loading="lazy" decoding="async" />
         <span class="name">Ignatius Blaze</span>
         <span class="role">Head of Pyrotechnics & Special Effects</span>
       </div>
       <div class="team-card">
-        <img src="stage choreographer.JPG" alt="Stage Choreographer" />
+        <img src="stage choreographer.JPG" alt="Sebastian Stride" width="120" height="120" loading="lazy" decoding="async" />
         <span class="name">Sebastian Stride</span>
         <span class="role">Creative Director, Stage Production</span>
       </div>
       <div class="team-card">
-        <img src="merchandise manager.JPG" alt="Merchandise Manager" />
+        <img src="merchandise manager.JPG" alt="Chester Squirl" width="120" height="120" loading="lazy" decoding="async" />
         <span class="name">Chester Squirl</span>
         <span class="role">Head of Merchandise & Retail Operations</span>
       </div>
       <div class="team-card">
-        <img src="stylist.PNG" alt="Stylist" />
+        <img src="stylist.PNG" alt="Maximilian Fluff" width="120" height="120" loading="lazy" decoding="async" />
         <span class="name">Maximilian Fluff</span>
         <span class="role">Lead Wardrobe Stylist</span>
       </div>
       <div class="team-card">
-        <img src="vocal coach.JPG" alt="Vocal Coach" />
+        <img src="vocal coach.JPG" alt="Roland Howl" width="120" height="120" loading="lazy" decoding="async" />
         <span class="name">Roland Howl</span>
         <span class="role">Principal Vocal Coach</span>
       </div>
@@ -474,29 +330,29 @@
   <!-- BAND -->
   <div class="team-section">
     <p class="team-section-title">Performing Artists</p>
-    <div class="team-grid centered">
+    <div class="team-grid">
       <div class="team-card">
-        <img src="lead guitar.JPG" alt="Lead Guitar" />
+        <img src="lead guitar.JPG" alt="Alistair Fender" width="120" height="120" loading="lazy" decoding="async" />
         <span class="name">Alistair Fender</span>
         <span class="role">Lead Guitar</span>
       </div>
       <div class="team-card">
-        <img src="bass guitar.JPG" alt="Bass Guitar" />
+        <img src="bass guitar.JPG" alt="Cornelius Low" width="120" height="120" loading="lazy" decoding="async" />
         <span class="name">Cornelius Low</span>
         <span class="role">Bass Guitar</span>
       </div>
       <div class="team-card">
-        <img src="drums.JPG" alt="Drums" />
+        <img src="drums.JPG" alt="Maxwell Thump" width="120" height="120" loading="lazy" decoding="async" />
         <span class="name">Maxwell Thump</span>
         <span class="role">Drums & Percussion</span>
       </div>
       <div class="team-card">
-        <img src="keys and acoustic guitar.JPG" alt="Keys" />
+        <img src="keys and acoustic guitar.JPG" alt="Fitzgerald Moore" width="120" height="120" loading="lazy" decoding="async" />
         <span class="name">Fitzgerald Moore</span>
         <span class="role">Keys & Acoustic Guitar</span>
       </div>
       <div class="team-card">
-        <img src="guitar and backing vocals.JPG" alt="Guitar and Backing Vocals" />
+        <img src="guitar and backing vocals.JPG" alt="Sylvester Chord" width="120" height="120" loading="lazy" decoding="async" />
         <span class="name">Sylvester Chord</span>
         <span class="role">Guitar & Backing Vocals</span>
       </div>
@@ -506,19 +362,19 @@
   <!-- TECHNICIANS -->
   <div class="team-section">
     <p class="team-section-title">Technical Staff</p>
-    <div class="team-grid centered">
+    <div class="team-grid">
       <div class="team-card">
-        <img src="guitar tech.JPG" alt="Guitar Tech" style="object-position: 35% center;" />
+        <img src="guitar tech.JPG" alt="Rupert Strings" width="120" height="120" loading="lazy" decoding="async" style="object-position: 35% center;" />
         <span class="name">Rupert Strings</span>
         <span class="role">Guitar Technician</span>
       </div>
       <div class="team-card">
-        <img src="bass tech.JPG" alt="Bass Tech" />
+        <img src="bass tech.JPG" alt="Archibald Bass" width="120" height="120" loading="lazy" decoding="async" />
         <span class="name">Archibald Bass</span>
         <span class="role">Bass Technician</span>
       </div>
       <div class="team-card">
-        <img src="drum tech.JPG" alt="Drum Tech" />
+        <img src="drum tech.JPG" alt="Wellington Snare" width="120" height="120" loading="lazy" decoding="async" />
         <span class="name">Wellington Snare</span>
         <span class="role">Drum Technician</span>
       </div>
@@ -528,14 +384,14 @@
   <!-- INTERN -->
   <div class="team-section">
     <p class="team-section-title">Other</p>
-    <div class="team-grid centered">
+    <div class="team-grid">
       <div class="team-card">
-        <img src="seniorintern.JPG" alt="Senior Intern" />
+        <img src="seniorintern.JPG" alt="Broderick Skate" width="120" height="120" loading="lazy" decoding="async" />
         <span class="name">Broderick Skate</span>
         <span class="role">Senior Intern</span>
       </div>
       <div class="team-card">
-        <img src="intern.JPG" alt="Intern" />
+        <img src="intern.JPG" alt="Bradley Grin" width="120" height="120" loading="lazy" decoding="async" />
         <span class="name">Bradley Grin</span>
         <span class="role">Intern</span>
       </div>
@@ -545,9 +401,9 @@
   <!-- KEEPER OF SECRETS -->
   <div class="team-section">
     <p class="team-section-title">Office of Confidential Affairs</p>
-    <div class="team-grid centered">
+    <div class="team-grid">
       <div class="team-card">
-        <img src="keepr of secrets.JPG" alt="Keeper of Secrets" />
+        <img src="keepr of secrets.JPG" alt="Mr. D" width="120" height="120" loading="lazy" decoding="async" />
         <span class="name">known only as Mr. D</span>
         <span class="role">Keeper of Secrets</span>
       </div>
@@ -555,17 +411,6 @@
   </div>
 
   <footer>&copy; 2026 Northwell Media</footer>
-
-  <script>
-    const hamburger = document.getElementById('hamburger');
-    const navMenu = document.getElementById('nav-menu');
-    hamburger.addEventListener('click', () => navMenu.classList.toggle('open'));
-    document.addEventListener('click', (e) => {
-      if (!hamburger.contains(e.target) && !navMenu.contains(e.target)) {
-        navMenu.classList.remove('open');
-      }
-    });
-  </script>
 
 </body>
 </html>
