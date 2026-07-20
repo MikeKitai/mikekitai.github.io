@@ -545,7 +545,7 @@
   <div class="falling-divider"></div>
   <section id="spotify">
     <p class="section-label">🎵 Latest Release</p>
-    <iframe class="spotify-embed" title="Latest Release" src="https://open.spotify.com/embed/track/2gRXvsvdjTAfIAO2V10SN1?utm_source=generator&theme=0" width="100%" height="152" allowfullscreen allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+    <iframe class="spotify-embed" title="Latest Release" data-src="https://open.spotify.com/embed/track/2gRXvsvdjTAfIAO2V10SN1?utm_source=generator&theme=0" width="100%" height="152" allowfullscreen allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
   </section>
 
   </div><!-- end page-filter-wrap -->
@@ -558,6 +558,23 @@
   <div class="sdg-hint" id="sdg-hint" aria-hidden="true"></div>
 
   <script>
+    // ── LAZY SPOTIFY EMBED ──
+    // The iframe gets its src only when scrolled near, so the ~600 KB of
+    // Spotify player JS stays off the critical path (and out of Lighthouse).
+    (function () {
+      const embed = document.querySelector('.spotify-embed');
+      if (!embed) return;
+      const load = () => { if (!embed.src) embed.src = embed.dataset.src; };
+      if ('IntersectionObserver' in window) {
+        const io = new IntersectionObserver((entries) => {
+          if (entries.some(e => e.isIntersecting)) { load(); io.disconnect(); }
+        }, { rootMargin: '400px' });
+        io.observe(embed);
+      } else {
+        load(); // old browsers: load immediately
+      }
+    })();
+
     // ── PORTRAIT TAP SPEED & GRAVITY EASTER EGG (deferred until load) ──
     window.addEventListener('load', () => {
 
