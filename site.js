@@ -20,7 +20,19 @@
   });
 
   document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape') setMenu(false);
+    if (e.key !== 'Escape' || !navMenu.classList.contains('open')) return;
+    setMenu(false);
+    hamburger.focus(); // don't strand keyboard focus inside a hidden menu
+  });
+
+  // Tabbing past the last menu link closes the menu, so focus doesn't
+  // silently continue into page content behind an open overlay.
+  navMenu.addEventListener('focusout', () => {
+    setTimeout(() => {
+      if (!navMenu.contains(document.activeElement) && document.activeElement !== hamburger) {
+        setMenu(false);
+      }
+    }, 0);
   });
 })();
 

@@ -3,30 +3,75 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Mike Kitai — Careers</title>
-  <meta name="description" content="Open positions at Northwell Media — the organisation behind Tokyo-based singer-songwriter Mike Kitai." />
-  <!-- Google tag (gtag.js) -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-2ZZ6YZRC86"></script>
+  <title>Careers — Mike Kitai</title>
+  <meta name="description" content="Open positions at Northwell Media, the vast and entirely serious organisation behind Tokyo-based singer-songwriter Mike Kitai. Chord Researcher wanted." />
+  <link rel="canonical" href="https://mikekitai.com/careers.html" />
+  <meta name="theme-color" content="#2d0f52" />
+
+  <!-- Open Graph / social cards -->
+  <meta property="og:site_name" content="Mike Kitai" />
+  <meta property="og:title" content="Careers at Northwell Media — Mike Kitai" />
+  <meta property="og:description" content="Now hiring: Chord Researcher. Current chord inventory stands at approximately four." />
+  <meta property="og:url" content="https://mikekitai.com/careers.html" />
+  <meta property="og:type" content="website" />
+  <meta property="og:locale" content="en_US" />
+  <meta property="og:image" content="https://mikekitai.com/og-image.jpg" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:image:alt" content="Mike Kitai — Tokyo-based singer-songwriter" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Careers at Northwell Media — Mike Kitai" />
+  <meta name="twitter:description" content="Now hiring: Chord Researcher. Current chord inventory stands at approximately four." />
+  <meta name="twitter:image" content="https://mikekitai.com/og-image.jpg" />
+
+  <!-- Deliberately no JobPosting schema: these roles are a joke and should
+       not end up in Google Jobs. WebPage only. -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "name": "Careers",
+    "url": "https://mikekitai.com/careers.html",
+    "inLanguage": "en",
+    "isPartOf": { "@id": "https://mikekitai.com/#website" },
+    "about": { "@id": "https://mikekitai.com/#artist" }
+  }
+  </script>
+
+  <link rel="icon" href="MK_favicon.svg" type="image/svg+xml" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400&amp;family=DM+Serif+Display&amp;family=Inter:wght@300;400&amp;display=swap" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400&amp;family=DM+Serif+Display&amp;family=Inter:wght@300;400&amp;display=swap" media="print" onload="this.media='all'" />
+  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400&amp;family=DM+Serif+Display&amp;family=Inter:wght@300;400&amp;display=swap" /></noscript>
+  <script src="site.js" defer></script>
+  <!-- Analytics — loaded on idle after `load` so the 67 KB of GTM never
+       competes with first paint. dataLayer queues the config until then,
+       so the pageview still fires for every real visitor. -->
   <script>
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
     gtag('js', new Date());
     gtag('config', 'G-2ZZ6YZRC86');
+    addEventListener('load', function () {
+      var load = function () {
+        var s = document.createElement('script');
+        s.async = true;
+        s.src = 'https://www.googletagmanager.com/gtag/js?id=G-2ZZ6YZRC86';
+        document.head.appendChild(s);
+      };
+      'requestIdleCallback' in window
+        ? requestIdleCallback(load, { timeout: 3000 })
+        : setTimeout(load, 1200);
+    });
   </script>
-  <link rel="icon" href="MK_favicon.svg" type="image/svg+xml" />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400&family=DM+Serif+Display&family=Inter:wght@300;400&display=swap" />
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400&family=DM+Serif+Display&family=Inter:wght@300;400&display=swap" media="print" onload="this.media='all'" />
-  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400&family=DM+Serif+Display&family=Inter:wght@300;400&display=swap" /></noscript>
-  <script src="site.js" defer></script>
   <style>
     /* ═══ SHARED (keep in sync across pages) ═══ */
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
       --white: #f7f6f3;
-      --mid: #7a6d8a;
+      --mid: #bdb2c9; /* was #7a6d8a — only 2.1:1 on the gradient; this clears 5:1 */
       --accent: #c8bfa8;
       --line: rgba(200, 191, 168, 0.1);
       --line-strong: rgba(200, 191, 168, 0.18);
@@ -161,6 +206,71 @@
       letter-spacing: 0.08em;
     }
 
+    .footer-cta {
+      margin-bottom: 12px;
+      font-size: 12px;
+      letter-spacing: 0.06em;
+    }
+
+    .footer-cta a {
+      color: var(--accent);
+      text-decoration: none;
+      border-bottom: 1px solid rgba(200,191,168,0.25);
+      padding-bottom: 2px;
+      transition: border-color 0.2s;
+    }
+
+    .footer-cta a:hover { border-color: var(--accent); }
+
+    /* ── A11Y: skip link, focus ring, screen-reader text ── */
+    .skip-link {
+      position: absolute;
+      left: 8px;
+      top: -64px;
+      z-index: 200;
+      padding: 10px 18px;
+      background: #12081f;
+      color: var(--white);
+      border: 1px solid var(--line-strong);
+      border-radius: 3px;
+      font-size: 13px;
+      letter-spacing: 0.06em;
+      text-decoration: none;
+      transition: top 0.2s;
+    }
+
+    .skip-link:focus { top: 8px; }
+
+    :focus-visible {
+      outline: 2px solid var(--accent);
+      outline-offset: 3px;
+      border-radius: 2px;
+    }
+
+    .visually-hidden {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      margin: -1px;
+      padding: 0;
+      overflow: hidden;
+      clip: rect(0 0 0 0);
+      clip-path: inset(50%);
+      white-space: nowrap;
+      border: 0;
+    }
+
+    /* ── A11Y: respect reduced-motion ── */
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+      }
+      .gradient-bg { background-position: 30% 50%; }
+    }
+
     /* ═══ PAGE-SPECIFIC ═══ */
 
     /* ── PAGE ── */
@@ -201,6 +311,7 @@
       gap: 12px;
       flex-wrap: wrap;
       margin-bottom: 40px;
+      list-style: none;
     }
 
     .stat-pill {
@@ -289,7 +400,7 @@
 
     .listing-description {
       font-size: 13px;
-      color: rgba(247,246,243,0.7);
+      color: rgba(247,246,243,0.85);
       line-height: 1.8;
       margin-bottom: 16px;
     }
@@ -350,9 +461,11 @@
 </head>
 <body>
 
-  <div class="gradient-bg"></div>
+  <a class="skip-link" href="#openings">Skip to open positions</a>
 
-  <nav class="navbar">
+  <div class="gradient-bg" aria-hidden="true"></div>
+
+  <nav class="navbar" aria-label="Main">
     <div></div>
     <a class="navbar-name" href="index.html">Mike Kitai</a>
     <button class="hamburger" id="hamburger" aria-label="Menu" aria-controls="nav-menu" aria-expanded="false">
@@ -371,23 +484,25 @@
     <h1 class="page-title">Join Our Team</h1>
     <p class="page-intro">We are a fast-moving, globally-minded organisation committed to excellence, innovation, and the responsible management of one singer-songwriter based in Tokyo. We are always looking for exceptional talent to help us achieve our mission.</p>
 
-    <div class="stats">
-      <div class="stat-pill">📍 Tokyo, Japan</div>
-      <div class="stat-pill">🌐 Remote considered for suitable candidates</div>
-      <div class="stat-pill">⚡ 4 open positions</div>
-    </div>
+    <ul class="stats">
+      <li class="stat-pill"><span aria-hidden="true">📍</span> Tokyo, Japan</li>
+      <li class="stat-pill"><span aria-hidden="true">🌐</span> Remote considered for suitable candidates</li>
+      <li class="stat-pill"><span aria-hidden="true">⚡</span> 4 open positions</li>
+    </ul>
+
+    <h2 class="visually-hidden" id="openings">Open positions</h2>
 
     <div class="listings">
 
       <!-- CHORD RESEARCHER -->
       <div class="listing">
         <div class="listing-header">
-          <span class="listing-title">Chord Researcher</span>
+          <h3 class="listing-title">Chord Researcher</h3>
           <span class="listing-badge badge-new">New</span>
         </div>
-        <p class="listing-meta">Research & Development · Full-time · Tokyo</p>
+        <p class="listing-meta">Research &amp; Development · Full-time · Tokyo</p>
         <p class="listing-description">
-          A newly created role within our expanding R&D division. You will be responsible for the identification, cataloguing, and strategic deployment of chords. Current chord inventory stands at approximately four. We are looking to expand this to five.
+          A newly created role within our expanding R&amp;D division. You will be responsible for the identification, cataloguing, and strategic deployment of chords. Current chord inventory stands at approximately four. We are looking to expand this to five.
         </p>
         <div class="listing-requirements">
           <strong>Requirements</strong>
@@ -398,7 +513,7 @@
       <!-- DEPUTY ASSISTANT SECRETARY -->
       <div class="listing">
         <div class="listing-header">
-          <span class="listing-title">Deputy Assistant Secretary for Spent Fuel & High-Level Waste Disposition</span>
+          <h3 class="listing-title">Deputy Assistant Secretary for Spent Fuel &amp; High-Level Waste Disposition</h3>
           <span class="listing-badge badge-urgent">Urgent</span>
         </div>
         <p class="listing-meta">Executive Leadership · Full-time · Tokyo</p>
@@ -414,10 +529,10 @@
       <!-- ASSISTANT TO BASS TECH ASSISTANT -->
       <div class="listing">
         <div class="listing-header">
-          <span class="listing-title">Assistant to the Bass Tech Assistant</span>
+          <h3 class="listing-title">Assistant to the Bass Tech Assistant</h3>
           <span class="listing-badge badge-open">Open</span>
         </div>
-        <p class="listing-meta">Technical Staff · Full-time · Tokyo & Tour Dates</p>
+        <p class="listing-meta">Technical Staff · Full-time · Tokyo &amp; Tour Dates</p>
         <p class="listing-description">
           You will report directly to the Assistant Bass Technician, who reports to Archibald Bass, who reports to nobody in particular. Your responsibilities include handing things to the Assistant Bass Technician so that he may hand them to Archibald.
         </p>
@@ -430,7 +545,7 @@
       <!-- LEAD VOCALIST / SONGWRITER -->
       <div class="listing">
         <div class="listing-header">
-          <span class="listing-title">Lead Vocalist / Songwriter</span>
+          <h3 class="listing-title">Lead Vocalist / Songwriter</h3>
           <span class="listing-badge badge-open">Open</span>
         </div>
         <p class="listing-meta">Performing Artists · Full-time · Tokyo</p>
@@ -447,13 +562,16 @@
 
     <div class="apply-section">
       <p>To apply, send your CV and a brief personal statement to</p>
-      <a class="apply-email" href="mailto:careers@mikekitai.com" onclick="copyEmail(event, 'careers@mikekitai.com', 'careers-email-text')"><span id="careers-email-text">careers@mikekitai.com</span></a>
+      <a class="apply-email" href="mailto:careers@mikekitai.com" aria-label="Copy email address careers@mikekitai.com" onclick="copyEmail(event, 'careers@mikekitai.com', 'careers-email-text')"><span id="careers-email-text">careers@mikekitai.com</span></a>
       <p class="apply-note">Please include the role title in the subject line. Applications submitted without a subject line will be reviewed last, or possibly not at all.</p>
     </div>
 
   </div>
 
-  <footer>&copy; 2026 Northwell Media</footer>
+  <footer>
+    <p class="footer-cta"><a href="index.html#listen">← Listen to the music</a></p>
+    &copy; 2026 Northwell Media
+  </footer>
 
 </body>
 </html>
