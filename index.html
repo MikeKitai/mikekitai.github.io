@@ -360,26 +360,25 @@
     /* ═══ LEGIBILITY OVER THE RAIN ═══
        Remove a class from the body tag to switch any of these off. */
 
+    /* No backdrop-filter here on purpose. Blurring ten small plates over
+       content that changes every frame means re-sampling and re-blurring all
+       ten, every frame. At 46px tall a slightly more opaque fill is
+       indistinguishable and costs nothing. The big content panels on the
+       other pages keep their blur — there the effect actually shows. */
     .frosted .platform-link,
     .frosted .listing,
     .frosted .stat-pill {
-      background: rgba(7, 6, 11, 0.56);
-      -webkit-backdrop-filter: blur(7px);
-              backdrop-filter: blur(7px);
+      background: rgba(7, 6, 11, 0.7);
       border-color: rgba(200, 191, 168, 0.38);
     }
     .frosted .social-icon {
-      background: rgba(7, 6, 11, 0.56);
-      -webkit-backdrop-filter: blur(7px);
-              backdrop-filter: blur(7px);
+      background: rgba(7, 6, 11, 0.7);
       border-radius: 50%;
       border: 1px solid rgba(200, 191, 168, 0.25);
     }
     .frosted .hero-email,
     .frosted .apply-email {
-      background: rgba(7, 6, 11, 0.54);
-      -webkit-backdrop-filter: blur(7px);
-              backdrop-filter: blur(7px);
+      background: rgba(7, 6, 11, 0.68);
       padding: 7px 14px;
       border-radius: 3px;
     }
@@ -461,6 +460,16 @@
     .apply-section p, .apply-note, footer {
       text-shadow: 0 1px 10px rgba(3, 2, 9, 0.85);
     }
+
+    /* everything non-essential stops while the page falls apart */
+    body.collapsing .platform-link,
+    body.collapsing .platform-link svg,
+    body.collapsing .social-icon svg,
+    body.collapsing .hero-email,
+    body.collapsing .hero-quote,
+    body.collapsing .navbar-name,
+    body.collapsing .hero-portrait,
+    body.collapsing .mk-mask { animation-play-state: paused; }
 
     /* ═══ PAGE-SPECIFIC ═══ */
 
@@ -990,6 +999,13 @@
 
       function triggerGravity() {
         gravityActive = true;
+
+        // The rain and the chromatic split are competing for the same frames.
+        // Freeze them for the duration — the page is collapsing anyway, and
+        // on a phone this is the difference between 20fps and 60.
+        document.body.classList.add('collapsing');
+        const rainStrips = document.querySelectorAll('.rain-col > i');
+        rainStrips.forEach(strip => { strip.style.animationPlayState = 'paused'; });
         const allEls = Array.from(document.querySelectorAll(FALL_SELECTOR));
         const physicsEls = [];
 
@@ -1007,12 +1023,15 @@
             margin: 0;
             z-index: 9999;
             pointer-events: none;
+            will-change: transform;
           `;
           document.body.appendChild(clone);
           el.style.visibility = 'hidden';
 
           physicsEls.push({
             el: clone,
+            x0: rect.left,
+            y0: rect.top,
             x: rect.left,
             y: rect.top,
             w: rect.width,
@@ -1044,8 +1063,8 @@
             if (p.x < 0) { p.x = 0; p.vx *= -bounce; }
             if (p.x + p.w > window.innerWidth) { p.x = window.innerWidth - p.w; p.vx *= -bounce; }
 
-            p.el.style.left = p.x + 'px';
-            p.el.style.top = p.y + 'px';
+            p.el.style.transform =
+              'translate(' + (p.x - p.x0) + 'px,' + (p.y - p.y0) + 'px)';
 
             if (Math.abs(p.vy) > 0.5 || Math.abs(p.vx) > 0.1) allSettled = false;
           });
@@ -1062,6 +1081,8 @@
               setTimeout(() => {
                 physicsEls.forEach(p => p.el.remove());
                 allEls.forEach(el => el.style.visibility = '');
+                rainStrips.forEach(strip => { strip.style.animationPlayState = ''; });
+                document.body.classList.remove('collapsing');
                 gravityActive = false;
               }, 800);
             }, 2000);
