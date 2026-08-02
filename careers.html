@@ -6,7 +6,7 @@
   <title>Careers — Mike Kitai</title>
   <meta name="description" content="Open positions at Northwell Media, the vast and entirely serious organisation behind Tokyo-based singer-songwriter Mike Kitai. Chord Researcher wanted." />
   <link rel="canonical" href="https://mikekitai.com/careers.html" />
-  <meta name="theme-color" content="#2d0f52" />
+  <meta name="theme-color" content="#07060b" />
 
   <!-- Open Graph / social cards -->
   <meta property="og:site_name" content="Mike Kitai" />
@@ -89,21 +89,65 @@
       overflow-x: hidden;
     }
 
+    /* ═══ BACKGROUND ═══
+       One 18px column per pixel of the MK grid. Each carries a soft streak on
+       black that falls at its own rate, built by the script at the end of the
+       body. transform only, so it composites rather than repaints. */
     .gradient-bg {
       position: fixed;
       inset: 0;
-      z-index: -1;
-      background: linear-gradient(135deg, #2d0f52, #0d2a6e, #4a0f5e, #0a3a5a, #5e0f3a, #0f4a3a, #3a0f6e, #0d2a6e, #2d0f52);
-      background-size: 400% 400%;
-      animation: gradientShift 18s ease infinite;
+      z-index: -2;
+      background-color: #07060b;
+      display: flex;
+      overflow: hidden;
     }
 
-    @keyframes gradientShift {
-      0%   { background-position: 0% 50%; }
-      25%  { background-position: 100% 0%; }
-      50%  { background-position: 100% 100%; }
-      75%  { background-position: 0% 100%; }
-      100% { background-position: 0% 50%; }
+    .rain-col { flex: 0 0 18px; position: relative; overflow: hidden; }
+
+    .rain-col > i {
+      position: absolute;
+      left: 0; right: 0; top: 0;
+      display: block;
+      animation-name: fall;
+      animation-timing-function: linear;
+      animation-iteration-count: infinite;
+    }
+
+    @keyframes fall {
+      from { transform: translateY(0); }
+      to   { transform: translateY(var(--p)); }
+    }
+
+    /* The pixel stencil as three offset CMY masks. Cyan blocks red, magenta
+       blocks green, yellow blocks blue — stacked in register they make black,
+       and where they drift apart each pixel edge picks up a colour fringe. */
+    .mk-mask {
+      position: fixed;
+      inset: 0;
+      z-index: -1;
+      pointer-events: none;
+      background-image: url("data:image/svg+xml,%3Csvg%20xmlns%3D%27http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%27%20viewBox%3D%27-2%20-2%20104%20104%27%3E%3Cpath%20d%3D%27M0%2C0%20L100%2C0%20L100%2C100%20L0%2C100%20Z%20M31%2C0%20L51.8%2C20.8%20L72.6%2C0%20Z%20M0%2C33.3%20L0%2C36.7%20L20%2C36.7%20L20%2C52.6%20L36%2C36.7%20L64.3%2C36.7%20L47.2%2C53.9%20L93.2%2C100%20L100%2C100%20L80%2C79.9%20L80%2C21%20L67.6%2C33.4%20L36%2C33.4%20L20%2C17.4%20L20%2C33.3%20Z%20M20%2C81%20L20%2C100%20L64.9%2C100%20L33%2C68.1%20Z%27%20fill%3D%27%23ffff00%27%20fill-rule%3D%27evenodd%27%2F%3E%3C%2Fsvg%3E"), url("data:image/svg+xml,%3Csvg%20xmlns%3D%27http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%27%20viewBox%3D%27-2%20-2%20104%20104%27%3E%3Cpath%20d%3D%27M0%2C0%20L100%2C0%20L100%2C100%20L0%2C100%20Z%20M31%2C0%20L51.8%2C20.8%20L72.6%2C0%20Z%20M0%2C33.3%20L0%2C36.7%20L20%2C36.7%20L20%2C52.6%20L36%2C36.7%20L64.3%2C36.7%20L47.2%2C53.9%20L93.2%2C100%20L100%2C100%20L80%2C79.9%20L80%2C21%20L67.6%2C33.4%20L36%2C33.4%20L20%2C17.4%20L20%2C33.3%20Z%20M20%2C81%20L20%2C100%20L64.9%2C100%20L33%2C68.1%20Z%27%20fill%3D%27%23ff00ff%27%20fill-rule%3D%27evenodd%27%2F%3E%3C%2Fsvg%3E"), url("data:image/svg+xml,%3Csvg%20xmlns%3D%27http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%27%20viewBox%3D%27-2%20-2%20104%20104%27%3E%3Cpath%20d%3D%27M0%2C0%20L100%2C0%20L100%2C100%20L0%2C100%20Z%20M31%2C0%20L51.8%2C20.8%20L72.6%2C0%20Z%20M0%2C33.3%20L0%2C36.7%20L20%2C36.7%20L20%2C52.6%20L36%2C36.7%20L64.3%2C36.7%20L47.2%2C53.9%20L93.2%2C100%20L100%2C100%20L80%2C79.9%20L80%2C21%20L67.6%2C33.4%20L36%2C33.4%20L20%2C17.4%20L20%2C33.3%20Z%20M20%2C81%20L20%2C100%20L64.9%2C100%20L33%2C68.1%20Z%27%20fill%3D%27%2300ffff%27%20fill-rule%3D%27evenodd%27%2F%3E%3C%2Fsvg%3E");
+      background-size: 18px 18px, 18px 18px, 18px 18px;
+      background-repeat: repeat, repeat, repeat;
+      background-blend-mode: multiply, multiply, normal;
+      mix-blend-mode: multiply;
+      animation: aberrate 11s ease-in-out infinite alternate;
+    }
+
+    @keyframes aberrate {
+      0%   { background-position:  1px 0px, 0 0, -1px  0px; }
+      50%  { background-position: -1px 1px, 0 0,  1px -1px; }
+      100% { background-position:  2px 0px, 0 0, -2px  1px; }
+    }
+
+    /* Soft darkening under the content column only; the edges stay bright. */
+    .scrim {
+      position: fixed;
+      inset: 0;
+      z-index: -1;
+      pointer-events: none;
+      background: radial-gradient(ellipse 58% 72% at 50% 42%,
+                  rgba(4, 3, 8, 0.82) 0%, rgba(4, 3, 8, 0.45) 52%, transparent 78%);
     }
 
     .navbar {
@@ -268,7 +312,105 @@
         animation-iteration-count: 1 !important;
         transition-duration: 0.01ms !important;
       }
-      .gradient-bg { background-position: 30% 50%; }
+      .rain-col > i, .mk-mask, .navbar-name,
+      .platform-link, .platform-link svg, .social-icon svg,
+      .hero-email, .apply-email, .hero-quote, .hero-portrait { animation: none !important; }
+      .platform-link svg, .social-icon svg { filter: drop-shadow(0 0 3px rgba(0,0,0,.9)); }
+      .navbar-name, .platform-link, .hero-email, .apply-email { text-shadow: none; }
+      .hero-quote { text-shadow: 0 2px 14px rgba(3,2,9,.9); }
+      .hero-portrait { filter: grayscale(15%); }
+    }
+
+
+    /* ═══ LEGIBILITY OVER THE RAIN ═══
+       Remove a class from <body class="frosted scrimmed strongborder brighticons rgbui"> to switch any of these off. */
+
+    .frosted .platform-link,
+    .frosted .listing,
+    .frosted .stat-pill {
+      background: rgba(7, 6, 11, 0.56);
+      -webkit-backdrop-filter: blur(7px);
+              backdrop-filter: blur(7px);
+      border-color: rgba(200, 191, 168, 0.38);
+    }
+    .frosted .social-icon {
+      background: rgba(7, 6, 11, 0.56);
+      -webkit-backdrop-filter: blur(7px);
+              backdrop-filter: blur(7px);
+      border-radius: 50%;
+      border: 1px solid rgba(200, 191, 168, 0.25);
+    }
+    .frosted .hero-email,
+    .frosted .apply-email {
+      background: rgba(7, 6, 11, 0.54);
+      -webkit-backdrop-filter: blur(7px);
+              backdrop-filter: blur(7px);
+      padding: 7px 14px;
+      border-radius: 3px;
+    }
+    .frosted .spotify-embed { border-radius: 6px; }
+
+    .strongborder { --line-strong: rgba(200, 191, 168, 0.45); }
+    .strongborder .platform-link { border-color: rgba(200, 191, 168, 0.45); }
+
+    .brighticons .social-icon { opacity: 1; }
+    .brighticons .social-icon svg,
+    .brighticons .platform-link svg { opacity: 1; }
+
+    /* Chromatic split. Labels use text-shadow; SVGs can't, so they stack
+       drop-shadows. The dark halo leads every keyframe so nothing loses its
+       separation from the rain. Offsets stay small — these are 13px labels. */
+    @keyframes rgbUIText {
+      0%, 25% { text-shadow: 0 0 1px rgba(251,0,231,.55), 0 0 2px rgba(0,233,235,.55); }
+      45%     { text-shadow: 2px 0 1px rgba(251,0,231,.55), -2px 0 1px rgba(0,233,235,.55); }
+      50%     { text-shadow: -2px 0 1px rgba(251,0,231,.55), 2px 0 1px rgba(0,233,235,.55); }
+      55%     { text-shadow: 0 0 2px rgba(251,0,231,.55), 0 0 2px rgba(0,233,235,.55); }
+      90%     { text-shadow: -1px 1px 1px rgba(251,0,231,.55), 1px -1px 1px rgba(0,233,235,.55); }
+      100%    { text-shadow: 1px 0 1px rgba(251,0,231,.55), -1px 0 1px rgba(0,233,235,.55); }
+    }
+    @keyframes rgbUIIcon {
+      0%, 25% { filter: drop-shadow(0 0 3px rgba(0,0,0,.9)) drop-shadow(0 0 1px rgba(251,0,231,.6))  drop-shadow(0 0 2px rgba(0,233,235,.6)); }
+      45%     { filter: drop-shadow(0 0 3px rgba(0,0,0,.9)) drop-shadow(2px 0 1px rgba(251,0,231,.6)) drop-shadow(-2px 0 1px rgba(0,233,235,.6)); }
+      50%     { filter: drop-shadow(0 0 3px rgba(0,0,0,.9)) drop-shadow(-2px 0 1px rgba(251,0,231,.6)) drop-shadow(2px 0 1px rgba(0,233,235,.6)); }
+      55%     { filter: drop-shadow(0 0 3px rgba(0,0,0,.9)) drop-shadow(0 0 2px rgba(251,0,231,.6))  drop-shadow(0 0 2px rgba(0,233,235,.6)); }
+      90%     { filter: drop-shadow(0 0 3px rgba(0,0,0,.9)) drop-shadow(-1px 1px 1px rgba(251,0,231,.6)) drop-shadow(1px -1px 1px rgba(0,233,235,.6)); }
+      100%    { filter: drop-shadow(0 0 3px rgba(0,0,0,.9)) drop-shadow(1px 0 1px rgba(251,0,231,.6)) drop-shadow(-1px 0 1px rgba(0,233,235,.6)); }
+    }
+
+    .rgbui .platform-link,
+    .rgbui .hero-email,
+    .rgbui .apply-email { animation: rgbUIText 2.2s steps(9) infinite alternate; }
+    .rgbui .platform-link svg,
+    .rgbui .social-icon svg { animation: rgbUIIcon 2.2s steps(9) infinite alternate; }
+
+    /* staggered so they don't flash in unison */
+    .rgbui .platform-link:nth-child(1), .rgbui .platform-link:nth-child(1) svg { animation-delay: 0s; }
+    .rgbui .platform-link:nth-child(2), .rgbui .platform-link:nth-child(2) svg { animation-delay: -0.35s; }
+    .rgbui .platform-link:nth-child(3), .rgbui .platform-link:nth-child(3) svg { animation-delay: -0.7s; }
+    .rgbui .platform-link:nth-child(4), .rgbui .platform-link:nth-child(4) svg { animation-delay: -1.05s; }
+    .rgbui .platform-link:nth-child(5), .rgbui .platform-link:nth-child(5) svg { animation-delay: -1.4s; }
+    .rgbui .platform-link:nth-child(6), .rgbui .platform-link:nth-child(6) svg { animation-delay: -1.75s; }
+    .rgbui .social-icon:nth-child(1) svg { animation-delay: -0.5s; }
+    .rgbui .social-icon:nth-child(2) svg { animation-delay: -1.2s; }
+    .rgbui .social-icon:nth-child(3) svg { animation-delay: -1.9s; }
+
+    /* the navbar wordmark */
+    @keyframes rgbText {
+      0%, 25% { text-shadow: 0 0 1px rgba(251,0,231,.75), 0 0 3px rgba(0,233,235,.75), 0 0 3px rgba(0,242,14,.5); }
+      45%     { text-shadow: 3px 0 1px rgba(251,0,231,.75), 0 3px 1px rgba(0,233,235,.75), -3px 0 1px rgba(0,242,14,.5); }
+      50%     { text-shadow: -3px 0 1px rgba(251,0,231,.75), 0 -3px 1px rgba(0,233,235,.75), 3px 0 1px rgba(0,242,14,.5); }
+      55%     { text-shadow: 0 0 3px rgba(251,0,231,.75), 0 0 3px rgba(0,233,235,.75), 0 0 3px rgba(0,242,14,.5); }
+      90%     { text-shadow: -3px 0 1px rgba(251,0,231,.75), 0 3px 1px rgba(0,233,235,.75), 3px 0 1px rgba(0,242,14,.5); }
+      100%    { text-shadow: 3px 0 1px rgba(251,0,231,.75), 0 -3px 1px rgba(0,233,235,.75), -3px 0 1px rgba(0,242,14,.5); }
+    }
+    .navbar-name { will-change: text-shadow; animation: rgbText 2s steps(9) infinite alternate; }
+
+    /* body text sitting straight on the rain needs a little separation */
+    .section-label, .page-eyebrow, .page-intro,
+    .team-section-title, .team-card .name, .team-card .role,
+    .listing-meta, .listing-description, .listing-requirements,
+    .apply-section p, .apply-note, footer {
+      text-shadow: 0 1px 10px rgba(3, 2, 9, 0.85);
     }
 
     /* ═══ PAGE-SPECIFIC ═══ */
@@ -464,6 +606,8 @@
   <a class="skip-link" href="#openings">Skip to open positions</a>
 
   <div class="gradient-bg" aria-hidden="true"></div>
+  <div class="mk-mask" aria-hidden="true"></div>
+  <div class="scrim" aria-hidden="true"></div>
 
   <nav class="navbar" aria-label="Main">
     <div></div>
@@ -573,5 +717,52 @@
     &copy; 2026 Northwell Media
   </footer>
 
+
+  <script>
+    /* One 18px column per pixel of the MK grid. Each gets a randomised gap
+       between drops and its own fall time, so nothing moves in step. */
+    (function () {
+      const CELL = 18;
+      const HUES = ['#67e8f9','#38bdf8','#818cf8','#a78bfa','#c084fc','#ec4899','#f472b6','#5eead4'];
+      const wrap = document.querySelector('.gradient-bg');
+      if (!wrap) return;
+      if (matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+      function streak(hue, s) {
+        return 'repeating-linear-gradient(to bottom,'
+          + ' #000 0px,'
+          + ' #000 ' + (s - 150) + 'px,'
+          + ' ' + hue + '14 ' + (s - 120) + 'px,'
+          + ' ' + hue + '55 ' + (s - 66)  + 'px,'
+          + ' ' + hue + 'cc ' + (s - 34)  + 'px,'
+          + ' ' + hue + '66 ' + (s - 16)  + 'px,'
+          + ' #000 ' + s + 'px)';
+      }
+
+      function build() {
+        wrap.innerHTML = '';
+        const n = Math.ceil(window.innerWidth / CELL) + 1;
+        const h = window.innerHeight;
+        for (let i = 0; i < n; i++) {
+          const col = document.createElement('div');
+          col.className = 'rain-col';
+          const strip = document.createElement('i');
+          const period = 210 + Math.round(Math.random() * 260);
+          const speed  = 4.5 + Math.random() * 7.5;
+          strip.style.height = (h + period * 2) + 'px';
+          strip.style.top = (-period) + 'px';
+          strip.style.background = streak(HUES[i % HUES.length], period);
+          strip.style.setProperty('--p', period + 'px');
+          strip.style.animationDuration = speed.toFixed(2) + 's';
+          strip.style.animationDelay = (-Math.random() * speed).toFixed(2) + 's';
+          col.appendChild(strip);
+          wrap.appendChild(col);
+        }
+      }
+      build();
+      let t;
+      addEventListener('resize', () => { clearTimeout(t); t = setTimeout(build, 250); });
+    })();
+  </script>
 </body>
 </html>
