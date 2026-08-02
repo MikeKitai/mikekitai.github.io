@@ -798,7 +798,9 @@
       }
 
       function build() {
-        wrap.innerHTML = '';
+        // One fragment, one insertion — appending 80 children to a live node
+        // means the browser reflows 80 times instead of once.
+        const frag = document.createDocumentFragment();
         const n = Math.ceil(window.innerWidth / CELL) + 1;
         const h = window.innerHeight;
         for (let i = 0; i < n; i++) {
@@ -814,10 +816,20 @@
           strip.style.animationDuration = speed.toFixed(2) + 's';
           strip.style.animationDelay = (-Math.random() * speed).toFixed(2) + 's';
           col.appendChild(strip);
-          wrap.appendChild(col);
+          frag.appendChild(col);
         }
+        wrap.replaceChildren(frag);
       }
-      build();
+
+      // Building this synchronously blocked the main thread during the exact
+      // window Lighthouse measures. The page paints on its dark ground first;
+      // the rain arrives a frame or two later and nobody notices.
+      function scheduleBuild() {
+        if ('requestIdleCallback' in window) requestIdleCallback(build, { timeout: 900 });
+        else setTimeout(build, 60);
+      }
+      if (document.readyState === 'complete') scheduleBuild();
+      else addEventListener('load', scheduleBuild, { once: true });
       let t;
       addEventListener('resize', () => { clearTimeout(t); t = setTimeout(build, 250); });
     })();
