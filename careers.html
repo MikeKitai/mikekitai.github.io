@@ -323,7 +323,7 @@
 
 
     /* ═══ LEGIBILITY OVER THE RAIN ═══
-       Remove a class from <body class="frosted scrimmed strongborder brighticons rgbui"> to switch any of these off. */
+       Remove a class from <body class="rgbui"> to switch any of these off. */
 
     .frosted .platform-link,
     .frosted .listing,
@@ -411,6 +411,48 @@
     .listing-meta, .listing-description, .listing-requirements,
     .apply-section p, .apply-note, footer {
       text-shadow: 0 1px 10px rgba(3, 2, 9, 0.85);
+    }
+
+
+    /* ═══ CONTENT PANEL ═══
+       Reading pages get a solid surface. The rain stays visible either side,
+       framing the column rather than sitting under the text. */
+    .content-panel {
+      position: relative;
+      margin: 0 auto;
+      max-width: 824px;
+      /* same language as the buttons on the homepage, but a heavier blur —
+         a small plate only has to hide a few pixels of movement, a full
+         column has to hide a screenful, and 7px isn't enough at that size. */
+      background: rgba(7, 6, 11, 0.6);
+      -webkit-backdrop-filter: blur(14px);
+              backdrop-filter: blur(14px);
+      border-left: 1px solid rgba(200, 191, 168, 0.22);
+      border-right: 1px solid rgba(200, 191, 168, 0.22);
+    }
+
+    /* Without backdrop-filter a 60%-transparent panel would be unreadable,
+       so those browsers get a near-solid one instead. */
+    @supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
+      .content-panel { background: rgba(7, 6, 11, 0.94); }
+    }
+
+    /* the halos exist to lift text off the rain — on a solid panel they only
+       soften it, so they come back off */
+    .content-panel .page-eyebrow,
+    .content-panel .page-intro,
+    .content-panel .team-section-title,
+    .content-panel .team-card .name,
+    .content-panel .team-card .role,
+    .content-panel .listing-meta,
+    .content-panel .listing-description,
+    .content-panel .listing-requirements,
+    .content-panel .apply-section p,
+    .content-panel .apply-note,
+    .content-panel footer { text-shadow: none; }
+
+    @media (max-width: 900px) {
+      .content-panel { border-left: none; border-right: none; }
     }
 
     /* ═══ PAGE-SPECIFIC ═══ */
@@ -622,6 +664,7 @@
     </div>
   </nav>
 
+  <div class="content-panel">
   <div class="page-wrap">
 
     <p class="page-eyebrow">Northwell Media — Human Resources</p>
@@ -716,6 +759,7 @@
     <p class="footer-cta"><a href="index.html#listen">← Listen to the music</a></p>
     &copy; 2026 Northwell Media
   </footer>
+  </div><!-- /content-panel -->
 
 
   <script>
