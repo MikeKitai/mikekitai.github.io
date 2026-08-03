@@ -3,14 +3,14 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Mike Kitai — Tokyo-Based Singer-Songwriter</title>
+  <title>Mike Kitai | Tokyo-Based Singer-Songwriter</title>
   <meta name="description" content="Mike Kitai is a Tokyo-based singer-songwriter. Listen on Spotify, Apple Music, Bandcamp, SoundCloud, YouTube Music and Amazon Music." />
   <link rel="canonical" href="https://mikekitai.com/" />
   <meta name="theme-color" content="#07060b" />
 
   <!-- Open Graph / social cards -->
   <meta property="og:site_name" content="Mike Kitai" />
-  <meta property="og:title" content="Mike Kitai — Tokyo-Based Singer-Songwriter" />
+  <meta property="og:title" content="Mike Kitai | Tokyo-Based Singer-Songwriter" />
   <meta property="og:description" content="Tokyo-based singer-songwriter. Listen on Spotify, Apple Music, Bandcamp and more." />
   <meta property="og:url" content="https://mikekitai.com/" />
   <meta property="og:type" content="profile" />
@@ -20,7 +20,7 @@
   <meta property="og:image:height" content="630" />
   <meta property="og:image:alt" content="Mike Kitai — Tokyo-based singer-songwriter" />
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Mike Kitai — Tokyo-Based Singer-Songwriter" />
+  <meta name="twitter:title" content="Mike Kitai | Tokyo-Based Singer-Songwriter" />
   <meta name="twitter:description" content="Tokyo-based singer-songwriter. Listen on Spotify, Apple Music, Bandcamp and more." />
   <meta name="twitter:image" content="https://mikekitai.com/og-image-v2.jpg" />
 
@@ -803,6 +803,16 @@
      alone on purpose. */
   .rgbui .hamburger { will-change: filter; animation: rgbUIIcon 2.2s steps(9) infinite alternate; }
   @media (prefers-reduced-motion: reduce) { .rgbui .hamburger { animation: none; } }
+
+  /* Menu items matched to .platform-link: same full-strength white and the
+     same rgbUIText treatment, staggered so the three don't pulse in unison. */
+  .nav-link { opacity: 1; }
+  .rgbui .nav-link { animation: rgbUIText 2.2s steps(9) infinite alternate; }
+  .rgbui .nav-link:nth-child(1) { animation-delay: 0s; }
+  .rgbui .nav-link:nth-child(2) { animation-delay: -0.55s; }
+  .rgbui .nav-link:nth-child(3) { animation-delay: -1.1s; }
+  body.collapsing .nav-link { animation-play-state: paused; }
+  @media (prefers-reduced-motion: reduce) { .rgbui .nav-link { animation: none; } }
 </style>
 </head>
 <body class="frosted scrimmed strongborder brighticons rgbui">
