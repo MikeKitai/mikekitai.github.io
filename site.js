@@ -37,21 +37,69 @@
 })();
 
 /* ── EMAIL COPY (used by index + careers) ──
-   Copies `address` to the clipboard and flashes "Copied!" in the
-   element with id `spanId`. Falls back to mailto: if the clipboard
-   API is unavailable or fails. */
+   Three tiers, because in-app browsers (Instagram, TikTok, Facebook) routinely
+   block the async Clipboard API AND have no mail handler, so the old
+   clipboard-or-mailto pair failed twice and looked dead:
+
+     1. navigator.clipboard  — the modern path, works in real browsers
+     2. execCommand('copy')  — the legacy path, still works in most webviews
+     3. select the address   — so the native "Copy" menu is one tap away
+
+   Tier 2 is attempted synchronously when tier 1 is unavailable, because
+   execCommand requires an active user gesture and an async .catch() has
+   already lost it. */
+function legacyCopy(text) {
+  const ta = document.createElement('textarea');
+  ta.value = text;
+  ta.setAttribute('readonly', '');
+  // Must be on-screen and non-hidden for iOS to allow selection.
+  ta.style.cssText = 'position:fixed;top:0;left:0;width:1px;height:1px;' +
+                     'padding:0;border:none;opacity:0;pointer-events:none;';
+  document.body.appendChild(ta);
+
+  const sel = document.getSelection();
+  const prev = sel && sel.rangeCount ? sel.getRangeAt(0) : null;
+
+  ta.select();
+  ta.setSelectionRange(0, text.length);   // iOS ignores select() alone
+
+  let ok = false;
+  try { ok = document.execCommand('copy'); } catch (_) { ok = false; }
+
+  document.body.removeChild(ta);
+  if (prev && sel) { sel.removeAllRanges(); sel.addRange(prev); }
+  return ok;
+}
+
+/* Last resort: select the address where it sits on the page, so the user
+   can tap Copy from the native selection menu. Better than a dead mailto. */
+function selectAddress(spanId) {
+  const span = document.getElementById(spanId);
+  if (!span) return;
+  const range = document.createRange();
+  range.selectNodeContents(span);
+  const sel = document.getSelection();
+  if (!sel) return;
+  sel.removeAllRanges();
+  sel.addRange(range);
+}
+
 function copyEmail(e, address, spanId) {
   e.preventDefault();
-  const fallback = () => { window.location.href = 'mailto:' + address; };
 
-  if (!(navigator.clipboard && navigator.clipboard.writeText)) {
-    fallback();
+  const settle = (ok) => {
+    if (ok) flashCopied(spanId, address);
+    else selectAddress(spanId);
+  };
+
+  if (navigator.clipboard && navigator.clipboard.writeText) {
+    navigator.clipboard.writeText(address)
+      .then(() => flashCopied(spanId, address))
+      .catch(() => settle(legacyCopy(address)));
     return;
   }
 
-  navigator.clipboard.writeText(address)
-    .then(() => flashCopied(spanId, address))
-    .catch(fallback);
+  settle(legacyCopy(address));
 }
 
 function flashCopied(spanId, address) {
