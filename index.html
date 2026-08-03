@@ -73,12 +73,9 @@
   </script>
 
   <link rel="preload" as="image" href="Mike_Kitai_reduced.webp" fetchpriority="high" />
+  <link rel="preload" as="font" type="font/woff2" href="fonts/dmserifdisplay-400.woff2" crossorigin />
+  <link rel="preload" as="font" type="font/woff2" href="fonts/inter-400.woff2" crossorigin />
   <link rel="icon" href="MK_favicon.svg" type="image/svg+xml" />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Caveat:wght@400&amp;family=DM+Serif+Display&amp;family=Inter:wght@300;400&amp;display=swap" />
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Caveat:wght@400&amp;family=DM+Serif+Display&amp;family=Inter:wght@300;400&amp;display=swap" media="print" onload="this.media='all'" />
-  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Caveat:wght@400&amp;family=DM+Serif+Display&amp;family=Inter:wght@300;400&amp;display=swap" /></noscript>
   <script src="site.js" defer></script>
   <!-- Analytics — loaded on idle after `load` so the 67 KB of GTM never
        competes with first paint. dataLayer queues the config until then,
@@ -101,6 +98,16 @@
     });
   </script>
   <style>
+  /* ═══ SELF-HOSTED FONTS ═══ same origin, no third-party handshake ═══ */
+  @font-face{font-family:'Inter';font-style:normal;font-weight:300;font-display:swap;src:url(fonts/inter-300.woff2) format('woff2')}
+  @font-face{font-family:'Inter';font-style:normal;font-weight:400;font-display:swap;src:url(fonts/inter-400.woff2) format('woff2')}
+  @font-face{font-family:'DM Serif Display';font-style:normal;font-weight:400;font-display:swap;src:url(fonts/dmserifdisplay-400.woff2) format('woff2')}
+  /* Caveat is SUBSET to letters, digits and common punctuation (48→33 KB).
+     It renders one line: the hero quote. If that text ever gains an unusual
+     symbol, the font must be re-subset or the character falls back mid-word.
+     Full original kept at ../caveat-400-full-original.woff2 */
+  @font-face{font-family:'Caveat';font-style:normal;font-weight:400;font-display:swap;src:url(fonts/caveat-400.woff2) format('woff2')}
+
     /* ═══ SHARED (keep in sync across pages) ═══ */
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
