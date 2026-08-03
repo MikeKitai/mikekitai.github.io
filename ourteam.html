@@ -70,6 +70,12 @@
   @font-face{font-family:'Cormorant Garamond';font-style:normal;font-weight:300;font-display:swap;src:url(fonts/cormorantgaramond-300.woff2) format('woff2')}
   @font-face{font-family:'Cormorant Garamond';font-style:normal;font-weight:400;font-display:swap;src:url(fonts/cormorantgaramond-400.woff2) format('woff2')}
 
+  /* The rain layer is position:fixed and covers only the viewport. When a
+     mobile URL bar collapses, the visual viewport briefly exceeds it and the
+     browser canvas shows through — white by default. Colouring the root
+     propagates to the canvas, so overscroll and that gap paint dark. */
+  html { background-color: #07060b; }
+
     /* ═══ SHARED (keep in sync across pages) ═══ */
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -165,10 +171,10 @@
       align-items: center;
       padding: 0 32px;
       height: 68px;
-      background: var(--nav-bg);
-      backdrop-filter: blur(12px);
-      -webkit-backdrop-filter: blur(12px);
-      border-bottom: 1px solid var(--line);
+      /* Matched to .platform-link: same fill and no
+         backdrop-filter for the same reason — blurring a full-width bar
+         over rain that repaints every frame costs more than the fill. */
+      background: rgba(7, 6, 11, 0.7);
     }
 
     .navbar-name {
@@ -218,11 +224,7 @@
       top: 68px;
       right: 0;
       min-width: 200px;
-      background: rgba(10, 5, 20, 0.95);
-      backdrop-filter: blur(12px);
-      -webkit-backdrop-filter: blur(12px);
-      border: 1px solid var(--line);
-      border-top: none;
+      background: rgba(7, 6, 11, 0.7);
       padding: 8px 0;
     }
 
@@ -567,7 +569,14 @@
     @media (max-width: 480px) {
       .team-grid .team-card { width: 140px; }
     }
-  </style>
+  
+  /* One filter on the button, not three on the bars — the chromatic split
+     then reads as a single glitching icon rather than three loose lines,
+     and it is one composited layer instead of three. Menu text is left
+     alone on purpose. */
+  .rgbui .hamburger { will-change: filter; animation: rgbUIIcon 2.2s steps(9) infinite alternate; }
+  @media (prefers-reduced-motion: reduce) { .rgbui .hamburger { animation: none; } }
+</style>
 </head>
 <body class="rgbui">
 
