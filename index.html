@@ -530,19 +530,24 @@
       -webkit-backface-visibility: hidden;
     }
 
+    /* No fill and no ring: the back of the disc is the rain itself, with the
+       mark sitting on it. Inlined rather than an <img> so it can take
+       currentColor — the source SVG is solid black and would disappear
+       against the ground. The two shadows are what keep it legible while a
+       bright streak passes behind it. */
     .portrait-back {
       transform: rotateY(180deg);
-      background: #2d0f52;
       display: flex;
       align-items: center;
       justify-content: center;
-      border: 1px solid rgba(200,191,168,0.2);
+      color: var(--accent);
     }
 
-    .portrait-back img {
+    .portrait-back .mk-mark {
       width: 60%;
       height: 60%;
-      object-fit: contain;
+      filter: drop-shadow(0 2px 9px rgba(3, 2, 9, 0.95))
+              drop-shadow(0 0 3px rgba(3, 2, 9, 0.9));
     }
 
     .hero-portrait {
@@ -851,7 +856,7 @@
           <img class="hero-portrait" src="Mike_Kitai_reduced.webp" alt="Mike Kitai" id="hero-portrait" width="140" height="140" fetchpriority="high" decoding="async" />
         </div>
         <div class="portrait-back">
-          <img src="MK_favicon.svg" alt="MK" />
+          <svg class="mk-mark" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false"><path d="M0,0 L100,0 L100,100 L0,100 Z M31,0 L51.8,20.8 L72.6,0 Z M0,33.3 L0,36.7 L20,36.7 L20,52.6 L36,36.7 L64.3,36.7 L47.2,53.9 L93.2,100 L100,100 L80,79.9 L80,21 L67.6,33.4 L36,33.4 L20,17.4 L20,33.3 Z M20,81 L20,100 L64.9,100 L33,68.1 Z" fill="currentColor" fill-rule="evenodd"/></svg>
         </div>
       </div>
     </div>
