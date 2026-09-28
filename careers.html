@@ -67,8 +67,6 @@
   @font-face{font-family:'Inter';font-style:normal;font-weight:300;font-display:swap;src:url(fonts/inter-300.woff2) format('woff2')}
   @font-face{font-family:'Inter';font-style:normal;font-weight:400;font-display:swap;src:url(fonts/inter-400.woff2) format('woff2')}
   @font-face{font-family:'DM Serif Display';font-style:normal;font-weight:400;font-display:swap;src:url(fonts/dmserifdisplay-400.woff2) format('woff2')}
-  @font-face{font-family:'Cormorant Garamond';font-style:normal;font-weight:300;font-display:swap;src:url(fonts/cormorantgaramond-300.woff2) format('woff2')}
-  @font-face{font-family:'Cormorant Garamond';font-style:normal;font-weight:400;font-display:swap;src:url(fonts/cormorantgaramond-400.woff2) format('woff2')}
 
   /* The rain layer is position:fixed and covers only the viewport. When a
      mobile URL bar collapses, the visual viewport briefly exceeds it and the
@@ -493,8 +491,8 @@
     }
 
     .page-title {
-      font-family: 'Cormorant Garamond', serif;
-      font-weight: 300;
+      font-family: 'DM Serif Display', serif;
+      font-weight: 400;
       font-size: clamp(36px, 5vw, 56px);
       letter-spacing: -0.01em;
       line-height: 1;
@@ -558,7 +556,7 @@
     }
 
     .listing-title {
-      font-family: 'Cormorant Garamond', serif;
+      font-family: 'DM Serif Display', serif;
       font-size: 22px;
       font-weight: 400;
       color: var(--white);
@@ -641,9 +639,9 @@
     }
 
     .apply-email {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 24px;
-      font-weight: 300;
+      font-family: 'DM Serif Display', serif;
+      font-size: 22px;
+      font-weight: 400;
       color: var(--white);
       text-decoration: none;
       border-bottom: 1px solid rgba(200,191,168,0.3);
@@ -709,9 +707,9 @@
     <p class="page-intro">We are a fast-moving, globally-minded organisation committed to excellence, innovation, and the responsible management of one singer-songwriter based in Tokyo. We are always looking for exceptional talent to help us achieve our mission.</p>
 
     <ul class="stats">
-      <li class="stat-pill"><span aria-hidden="true">📍</span> Tokyo, Japan</li>
-      <li class="stat-pill"><span aria-hidden="true">🌐</span> Remote considered for suitable candidates</li>
-      <li class="stat-pill"><span aria-hidden="true">⚡</span> 4 open positions</li>
+      <li class="stat-pill">Tokyo, Japan</li>
+      <li class="stat-pill">Remote considered for suitable candidates</li>
+      <li class="stat-pill">4 open positions</li>
     </ul>
 
     <h2 class="visually-hidden" id="openings">Open positions</h2>
@@ -804,7 +802,8 @@
        between drops and its own fall time, so nothing moves in step. */
     (function () {
       const CELL = 18;
-      const HUES = ['#67e8f9','#38bdf8','#818cf8','#a78bfa','#c084fc','#ec4899','#f472b6','#5eead4'];
+      // Taken from the portrait: sky, hillside, sand.
+      const HUES = ['#79c9f4','#d3c5ba','#8fb08a','#a9dcf7','#c8bfa8','#6fa3c7'];
       const wrap = document.querySelector('.gradient-bg');
       if (!wrap) return;
       if (matchMedia('(prefers-reduced-motion: reduce)').matches) return;
