@@ -42,6 +42,7 @@
   <link rel="preload" as="font" type="font/woff2" href="fonts/inter-400.woff2" crossorigin />
   <link rel="icon" href="MK_favicon.svg" type="image/svg+xml" />
   <script src="site.js" defer></script>
+  <script src="field.js" defer></script>
   <!-- Analytics — loaded on idle after `load` so the 67 KB of GTM never
        competes with first paint. dataLayer queues the config until then,
        so the pageview still fires for every real visitor. -->
@@ -67,8 +68,6 @@
   @font-face{font-family:'Inter';font-style:normal;font-weight:300;font-display:swap;src:url(fonts/inter-300.woff2) format('woff2')}
   @font-face{font-family:'Inter';font-style:normal;font-weight:400;font-display:swap;src:url(fonts/inter-400.woff2) format('woff2')}
   @font-face{font-family:'DM Serif Display';font-style:normal;font-weight:400;font-display:swap;src:url(fonts/dmserifdisplay-400.woff2) format('woff2')}
-  @font-face{font-family:'Cormorant Garamond';font-style:normal;font-weight:300;font-display:swap;src:url(fonts/cormorantgaramond-300.woff2) format('woff2')}
-  @font-face{font-family:'Cormorant Garamond';font-style:normal;font-weight:400;font-display:swap;src:url(fonts/cormorantgaramond-400.woff2) format('woff2')}
 
   /* The rain layer is position:fixed and covers only the viewport. When a
      mobile URL bar collapses, the visual viewport briefly exceeds it and the
@@ -486,8 +485,8 @@
     }
 
     .page-header h1 {
-      font-family: 'Cormorant Garamond', serif;
-      font-weight: 300;
+      font-family: 'DM Serif Display', serif;
+      font-weight: 400;
       font-size: clamp(36px, 5vw, 56px);
       letter-spacing: -0.01em;
       margin-bottom: 8px;
@@ -549,7 +548,7 @@
     }
 
     .team-card .name {
-      font-family: 'Cormorant Garamond', serif;
+      font-family: 'DM Serif Display', serif;
       font-size: 17px;
       font-weight: 400;
       color: var(--white);
@@ -586,6 +585,9 @@
   .rgbui .nav-link:nth-child(3) { animation-delay: -1.1s; }
   body.collapsing .nav-link { animation-play-state: paused; }
   @media (prefers-reduced-motion: reduce) { .rgbui .nav-link { animation: none; } }
+
+  /* The MK logo field (field.js) replaces the rain and its stencil mask. */
+  .mk-mask { display: none !important; }
 </style>
 </head>
 <body class="rgbui">
@@ -895,63 +897,5 @@
   </div><!-- /content-panel -->
 
 
-  <script>
-    /* One 18px column per pixel of the MK grid. Each gets a randomised gap
-       between drops and its own fall time, so nothing moves in step. */
-    (function () {
-      const CELL = 18;
-      const HUES = ['#67e8f9','#38bdf8','#818cf8','#a78bfa','#c084fc','#ec4899','#f472b6','#5eead4'];
-      const wrap = document.querySelector('.gradient-bg');
-      if (!wrap) return;
-      if (matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-
-      function streak(hue, s) {
-        return 'repeating-linear-gradient(to bottom,'
-          + ' #000 0px,'
-          + ' #000 ' + (s - 150) + 'px,'
-          + ' ' + hue + '14 ' + (s - 120) + 'px,'
-          + ' ' + hue + '55 ' + (s - 66)  + 'px,'
-          + ' ' + hue + 'cc ' + (s - 34)  + 'px,'
-          + ' ' + hue + '66 ' + (s - 16)  + 'px,'
-          + ' #000 ' + s + 'px)';
-      }
-
-      function build() {
-        // One fragment, one insertion — appending 80 children to a live node
-        // means the browser reflows 80 times instead of once.
-        const frag = document.createDocumentFragment();
-        const n = Math.ceil(window.innerWidth / CELL) + 1;
-        const h = window.innerHeight;
-        for (let i = 0; i < n; i++) {
-          const col = document.createElement('div');
-          col.className = 'rain-col';
-          const strip = document.createElement('i');
-          const period = 210 + Math.round(Math.random() * 260);
-          const speed  = 4.5 + Math.random() * 7.5;
-          strip.style.height = (h + period * 2) + 'px';
-          strip.style.top = (-period) + 'px';
-          strip.style.background = streak(HUES[i % HUES.length], period);
-          strip.style.setProperty('--p', period + 'px');
-          strip.style.animationDuration = speed.toFixed(2) + 's';
-          strip.style.animationDelay = (-Math.random() * speed).toFixed(2) + 's';
-          col.appendChild(strip);
-          frag.appendChild(col);
-        }
-        wrap.replaceChildren(frag);
-      }
-
-      // Building this synchronously blocked the main thread during the exact
-      // window Lighthouse measures. The page paints on its dark ground first;
-      // the rain arrives a frame or two later and nobody notices.
-      function scheduleBuild() {
-        if ('requestIdleCallback' in window) requestIdleCallback(build, { timeout: 900 });
-        else setTimeout(build, 60);
-      }
-      if (document.readyState === 'complete') scheduleBuild();
-      else addEventListener('load', scheduleBuild, { once: true });
-      let t;
-      addEventListener('resize', () => { clearTimeout(t); t = setTimeout(build, 250); });
-    })();
-  </script>
 </body>
 </html>
